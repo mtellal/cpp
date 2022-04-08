@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 17:16:29 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/07 18:30:56 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/04/08 15:04:02 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Contact {
 		std::string	nickName;
 		std::string	secret;
 		std::string	phoneNumber;
-		void	setInfos();
+		int	setInfos();
 };
 
 class PhoneBook {
@@ -31,9 +31,11 @@ class PhoneBook {
 		PhoneBook()
 		{
 			nbContacts = 0;
+			last_contact = 0;
 		}
 		
 		int	nbContacts;
+		int	last_contact;
 		Contact	repo[8];
 		void	add();
 		void	search();

@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 void	display(char *s, int space = 0)
 {
 	int 	i;
@@ -10,13 +8,13 @@ void	display(char *s, int space = 0)
 	while (s && s[i])
 	{
 		if (s[i] >= 97 && s[i] <= 122)
-			cout << (char)(s[i] - 32);
+			std::cout << (char)(s[i] - 32);
 		else
-			cout << s[i];
+			std::cout << s[i];
 		i++;
 	}
 	if (space)
-		cout << " ";
+		std::cout << " ";
 }
 
 
@@ -37,6 +35,6 @@ int	main(int argc, char **argv)
 		}
 	}
 	else
-		cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	cout << endl;
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+	std::cout << std::endl;
 }
