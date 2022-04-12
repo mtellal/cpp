@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/08 20:23:40 by mtellal           #+#    #+#              #
-#    Updated: 2022/04/09 16:19:08 by mtellal          ###   ########.fr        #
+#    Created: 2022/04/11 15:18:20 by mtellal           #+#    #+#              #
+#    Updated: 2022/04/11 16:24:59 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ GCC = g++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-NAME = violence
+NAME = replace
 
-SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
