@@ -1,16 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 14:29:56 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/08 16:27:53 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/07/30 14:39:14 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+
+Contact::Contact(void)
+{
+	firstName = "";
+	lastName = "";
+	nickName = "";
+	secret = "";
+	phoneNumber = "";
+}
+
+Contact::Contact(const Contact &s)
+{
+	firstName = s.firstName;
+	lastName = s.lastName;
+	nickName = s.nickName;
+	secret = s.secret;
+	phoneNumber = s.phoneNumber;
+}
+
+Contact	&Contact::operator=(const Contact &s)
+{
+	if (&s != this)
+	{
+		this->firstName = s.firstName;
+		this->lastName = s.lastName;
+		this->nickName = s.nickName;
+		this->secret = s.secret;
+		this->phoneNumber = s.phoneNumber;
+	}
+	return (*this);
+}
+
+Contact::~Contact(void) {};
 
 int	get_line(std::string& s)
 {

@@ -6,24 +6,26 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 16:15:59 by mtellal           #+#    #+#              #
-#    Updated: 2022/04/08 15:19:40 by mtellal          ###   ########.fr        #
+#    Updated: 2022/07/20 16:19:05 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GCC = g++
+GCC = c++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 NAME = phonebook 
 
-SRC = main.cpp contact.cpp phoneBook.cpp utils.cpp
+INCLUDE = include/
+
+SRC = main.cpp $(addprefix src/, Contact.cpp PhoneBook.cpp utils.cpp)
 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 %.o:%.cpp
-	$(GCC) $(CFLAGS) -o $@ -c $<
+	$(GCC) -I $(INCLUDE) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
 	$(GCC) $(CFLAGS) -o $(NAME) $(OBJ) 

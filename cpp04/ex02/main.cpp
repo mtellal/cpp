@@ -5,38 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 14:20:15 by mtellal           #+#    #+#             */
-/*   Updated: 2022/07/29 16:16:44 by mtellal          ###   ########.fr       */
+/*   Created: 2022/04/16 21:54:14 by mtellal           #+#    #+#             */
+/*   Updated: 2022/04/18 17:20:53 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 
-void	availableCmd()
+int	main()
 {
-	std::cout << "- ADD x\t\tadd a new contact x\n- SEARCH x\tsearch x in repository\n- EXIT\t\tquit the program" << std::endl;
-	std::cout << "phone_book: ";
-}
+	//Animal	A;
+	Dog	a;
+	
 
+	Cat	b;
 
-int main()
-{
-	PhoneBook	repo;
-	std::string	input;
+	std::cout << " ///// set 10 first ideas (Dog) ///// " << std::endl;
+	a.setAnimalIdeas(10);
+	std::cout << " ///// display 10 first ideas (Dog) //// " << std::endl;
+	a.displayAnimalIdeas(10);
 
-	availableCmd();
-	std::getline(std::cin, input);
-	while (input != "EXIT")
-	{
-		if (input == "ADD")
-			repo.add();
-		else if (input == "SEARCH")
-			repo.search();
-		else if (input.size() != 0)
-			std::cout << "!!! invalid command !!!" << std::endl;
-		std::cout << "phone_book: ";
-		std::getline(std::cin, input);
-	}
-	std::cout << "exit";
+	std::cout << " ///// set 10 first ideas (Cat) ///// " << std::endl;
+	b.setAnimalIdeas(10);
+	std::cout << " ///// display 10 first ideas (Cat) ///// " << std::endl;
+	b.displayAnimalIdeas(10);
+
 	return (0);
 }

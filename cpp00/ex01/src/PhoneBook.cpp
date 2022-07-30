@@ -1,17 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phoneBook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:10:24 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/08 16:27:18 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/07/30 13:47:02 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook(void)
+{
+	nbContacts = 0;
+	lastContact = 0;
+}
+
+PhoneBook::PhoneBook(const PhoneBook &source)
+{
+	nbContacts = source.nbContacts;
+	lastContact = source.lastContact;
+}
+
+PhoneBook::~PhoneBook(void) {}
+
+PhoneBook	&PhoneBook::operator=(const PhoneBook &source)
+{
+	if (this != &source)
+	{
+		this->nbContacts = source.nbContacts;
+		this->lastContact = source.lastContact;
+	}
+	return (*this);
+}
 
 void    PhoneBook::add()
 {
@@ -20,7 +43,7 @@ void    PhoneBook::add()
 		if (nbContacts != 7)
 			this->nbContacts++;
 		else
-			this->last_contact = 1;
+			this->lastContact = 1;
 		std::cout << "!!! contact successfully created !!!" <<std::endl;
 	}
 }
@@ -40,14 +63,12 @@ void    PhoneBook::table(int i)
 
 void    PhoneBook::selectContact()
 {
-        int             i;
         int             index;
         std::string     inp;
         std::string     ci;
+	std::string	tab[4];
 
-        i = 0;
-        i++;
-        std::cout << "tapez l'index du contact choisi: ";
+        std::cout << "tapez l'index du contact choisit: ";
         std::getline(std::cin, inp);
         index = ft_index(inp);
         if (index < 0 || index > this->nbContacts)
@@ -85,7 +106,7 @@ void    PhoneBook::search()
         }
         printChar(40, '-');
         std::cout << std::endl;
-	if (this->last_contact)
+	if (this->lastContact)
 		nb_contacts = 8;
 	while(i < nb_contacts)
         {

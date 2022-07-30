@@ -5,25 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/02 15:49:11 by mtellal           #+#    #+#              #
-#    Updated: 2022/07/20 11:13:18 by mtellal          ###   ########.fr        #
+#    Created: 2022/04/18 17:23:06 by mtellal           #+#    #+#              #
+#    Updated: 2022/04/18 17:25:36 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GCC = c++
+GCC = g++
 
-CFLAGS = -std=c++98 -Wall -Wextra -Werror
+CFLAGS =-std=c++98 -Wall -Wextra -Werror
 
-SRC = megaphone.cpp
+NAME = materia
 
-OBJ = $(SRC:.cpp=.o)
+SRC = main.cpp AMateria.cpp 
 
-NAME = megaphone
+OBJ = $(SRC:.cpp-.o)
 
 all: $(NAME)
 
 %.o:%.cpp
-	$(GCC) $(CFLAGS) -o $@ -c $<
+	$(GCC) $(CFRLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
 	$(GCC) $(CFLAGS) -o $(NAME) $(OBJ)

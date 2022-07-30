@@ -5,20 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/02 15:49:11 by mtellal           #+#    #+#              #
-#    Updated: 2022/07/20 11:13:18 by mtellal          ###   ########.fr        #
+#    Created: 2022/04/16 17:20:32 by mtellal           #+#    #+#              #
+#    Updated: 2022/04/18 17:13:27 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GCC = c++
+GCC = g++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = megaphone.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = megaphone
+NAME = animal 
 
 all: $(NAME)
 
