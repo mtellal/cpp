@@ -6,13 +6,13 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/15 17:38:13 by mtellal           #+#    #+#              #
-#    Updated: 2022/04/15 18:44:22 by mtellal          ###   ########.fr        #
+#    Updated: 2022/08/03 15:18:08 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GCC = g++
+GCC = c++
 
-CFLAGS = -std=c++98 -Wall -Wextra -Werror
+CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 NAME = clap
 

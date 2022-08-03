@@ -5,30 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 18:42:15 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/16 14:59:17 by mtellal          ###   ########.fr       */
+/*   Created: 2022/08/03 14:45:53 by mtellal           #+#    #+#             */
+/*   Updated: 2022/08/03 16:22:36 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAV_HPP
+#ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
 
 #include "ClapTrap.hpp"
 
 class	ScavTrap : public ClapTrap
 {
-	private:
-		std::string	name;
-		long		hit_points;
-		long		energy_points;
-		long		attack_dommage;
+
 	public:
-		ScavTrap();
-		ScavTrap(const std::string n);
-		ScavTrap	&operator=(const ScavTrap &n);
-		~ScavTrap();
-		
-		void	guardGate();
+		ScavTrap(void);
+		ScavTrap(const ScavTrap &);
+		ScavTrap(std::string);	
+		~ScavTrap(void);
+		ScavTrap	&operator=(const ScavTrap &);
+
+		void	attack(const std::string &);
+		void	guardGate(void);
 };
 
 #endif

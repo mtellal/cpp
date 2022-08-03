@@ -6,58 +6,117 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:46:00 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/16 14:51:21 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/03 16:35:41 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(): name("X"), hit_points(10), energy_points(10), attack_dommage(0)
+ClapTrap::ClapTrap(void)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default constructor called (ClapTrap)" << std::endl;
+	name = 'X';
+	hitPoints = 10;
+	energyPoints = 10;
+	attackDamage = 10;
 }
 
-ClapTrap::ClapTrap(const std::string n): name(n), hit_points(10), energy_points(10), attack_dommage(0)
+ClapTrap::ClapTrap(const ClapTrap &source)
 {
-	std::cout << "Parameter Constructor called" << std::endl;
+	std::cout << "Copy constructor called (ClapTrap)" << std::endl;
+	name = source.name;
+	hitPoints = source.hitPoints;
+	energyPoints = source.energyPoints;
+	attackDamage = source.attackDamage;
+}
+
+ClapTrap::ClapTrap(const std::string n) : name(n)
+{
+	std::cout << "Parameter Constructor called (ClapTrap)" << std::endl;
+	hitPoints = 10;
+	energyPoints = 10;
+	attackDamage = 10;
+}
+
+ClapTrap::~ClapTrap(void)
+{
+	std::cout << "Destructor called (ClapTrap)" << std::endl;
 }
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &n)
 {
-	std::cout << "Copy assignment calle" << std::endl;
+	std::cout << "Copy assignment called (ClapTrap)" << std::endl;
 	if (this != &n)
 		name = n.name;
 	return (*this);
 }
 
-ClapTrap::~ClapTrap()
+/*	GET / SETTERS	*/
+
+std::string	ClapTrap::getName(void) const
 {
-	std::cout << "Destructor called" << std::endl;
+	return (this->name);
+}
+
+long	ClapTrap::getHitPoints(void) const
+{
+	return (this->hitPoints);
+}
+
+long	ClapTrap::getEnergyPoints(void) const
+{
+	return (this->energyPoints);
+}
+
+long	ClapTrap::getAttackDamage(void) const
+{
+	return (this->attackDamage);
+}
+
+void	ClapTrap::setName(const std::string n)
+{
+	this->name = n;
+}
+
+void	ClapTrap::setHitPoints(long hp)
+{
+	this->hitPoints = hp;
+}
+
+void	ClapTrap::setEnergyPoints(long ep)
+{
+	this->energyPoints = ep;
+}
+
+void	ClapTrap::setAttackDamage(long ad)
+{
+	this->attackDamage = ad;
 }
 
 void	ClapTrap::attack(const std::string &target)
 {
-	if (hit_points > 0 && energy_points > 0)
+	if (this->hitPoints > 0 && this->energyPoints > 0)
 	{
-		std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << attack_dommage << " points of dammage!" << std::endl;
+		std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->attackDamage 
+			<< " points of dammage!" << std::endl;
+		if (this->energyPoints > 0)
+			this->energyPoints--;
 	}
 }
 
-void	ClapTrap::takeDommage(unsigned int amount)
+void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "takeDommage function member called" << std::endl;
-	std::cout << name << " has taken " << amount << " dammage points" << std::endl;
-	std::cout << name << " have " << (hit_points - amount) << " hit points" << std::endl;
-	hit_points -= amount;
+	std::cout << this->name << " has taken " << amount << " dammage points" << std::endl;
+	std::cout << name << " have " << this->hitPoints - amount << " hit points" << std::endl;
+	this->hitPoints -= amount;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	std::cout << "beRepaired function member called" << std::endl;
-	std::cout << name << " healed of " << amount << std::endl;
-	std::cout << name << " current hit points is " << hit_points + amount << std::endl;
-	hit_points += amount;
+	std::cout << this->name << " healed of " << amount << std::endl;
+	std::cout << this->name << " current hit points is " << this->hitPoints + amount << std::endl;
+	this->hitPoints += amount;
+	if (this->energyPoints > 0)
+		this->energyPoints--;
 }
-
-
 

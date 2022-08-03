@@ -5,44 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 15:29:09 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/16 15:57:03 by mtellal          ###   ########.fr       */
+/*   Created: 2022/08/03 17:15:11 by mtellal           #+#    #+#             */
+/*   Updated: 2022/08/03 17:37:55 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(): name("XXX"), hit_points(100), energy_points(100), attack_dommage(30)
+FragTrap::FragTrap(void) : ClapTrap()
 {
-	std::cout << "FragTrap default constructor called" << std::endl;
+	std::cout << "Default constructor called (FragTrap)" << std::endl;
+	this->setName("F");
+	this->setHitPoints(100);
+	this->setEnergyPoints(100);
+	this->setAttackDamage(30);
 }
 
-FragTrap::FragTrap(const std::string n): ClapTrap(n), name(n), hit_points(100), energy_points(100), attack_dommage(30)
+FragTrap::FragTrap(const FragTrap &source) : ClapTrap(source.getName())
 {
-	std::cout << "FragTrap parameters constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
+	this->setHitPoints(source.getHitPoints());
+	this->setEnergyPoints(source.getEnergyPoints());
+	this->setAttackDamage(source.getAttackDamage());
 }
 
-FragTrap	&FragTrap::operator=(const FragTrap &n)
+FragTrap::FragTrap(std::string n) : ClapTrap(n)
 {
-	std::cout << "FragTrap assignement operator called" << std::endl;
-	if (this != &n)
+	this->setName("F");
+        this->setHitPoints(100);
+        this->setEnergyPoints(100);
+        this->setAttackDamage(30);
+}
+
+FragTrap::~FragTrap(void)
+{
+	std::cout << "Destrcutor called (FragTrap)" << std::endl;
+}
+
+FragTrap	&FragTrap::operator=(const FragTrap &source)
+{
+	if (this != &source)
 	{
-		ClapTrap::operator=(n);
-		name = n.name;
-		hit_points = n.hit_points;
-		energy_points = n.energy_points;
-		attack_dommage = n.attack_dommage;
+		this->setName(source.getName());
+		this->setHitPoints(source.getHitPoints());
+        	this->setEnergyPoints(source.getEnergyPoints());
+        	this->setAttackDamage(source.getAttackDamage());
+
 	}
 	return (*this);
 }
 
-FragTrap::~FragTrap()
+void	FragTrap::highFiveGuys(void)
 {
-	std::cout << "FragTrap destructor called" << std::endl;
-}
-
-void	FragTrap::highFivesGuys()
-{
-	std::cout << "FragTrap highFivesGuys function members calle" << std::endl;
-	std::cout << "High fives guys ?";
+	std::cout << "Hello guys, high five ?" << std::endl;
 }

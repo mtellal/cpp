@@ -6,23 +6,24 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:37:30 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/16 15:15:14 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/03 15:40:06 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
 int main()
 {
-	ScavTrap	a("A");
-	ScavTrap	b;
-	ScavTrap	bb("B");
+	ClapTrap	a("A");
+	ScavTrap	b("B");
+	ScavTrap	c;
 
-	b = bb;
+	c = b;
+	b.attack("A");
 	a.attack("B");
-	b.takeDommage(2);
-	b.beRepaired(2);
-	b.guardGate();
+	b.beRepaired(10);
+	c.attack("B");
+	c.takeDamage(50);
+	c.guardGate();	
 	return (0);
 }
