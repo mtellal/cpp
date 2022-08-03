@@ -6,17 +6,17 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 16:30:18 by mtellal           #+#    #+#              #
-#    Updated: 2022/04/08 18:17:01 by mtellal          ###   ########.fr        #
+#    Updated: 2022/07/31 15:26:14 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GCC = g++
+GCC = c++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 NAME = zombie
 
-SRC = main.cpp Zombie.cpp 
+SRC = main.cpp Zombie.cpp zombieHorde.cpp 
 
 OBJ = $(SRC:.cpp=.o)
 

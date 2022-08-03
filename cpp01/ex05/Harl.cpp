@@ -6,11 +6,23 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:41:24 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/12 20:02:45 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/01 12:04:17 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+
+Harl::Harl(void)
+{
+	static void (Harl::*tab[4])(void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
+	ptr = tab;
+	std::cout << "Harl created" << std::endl;
+}
+
+Harl::~Harl(void)
+{
+	std::cout << "Harl deleted" << std::endl;
+}
 
 void	Harl::debug(void)
 {
@@ -35,13 +47,13 @@ void	Harl::error(void)
 void	Harl::complain(std::string level)
 {
 	int	i = 0;
-
+	
 	std::string tab[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	while (i < 4)
 	{
 		if (tab[i] == level)
 		{
-			(this->*f[i])();
+			(this->*ptr[i])();
 			break ;
 		}
 		i++;

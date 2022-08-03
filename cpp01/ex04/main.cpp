@@ -6,11 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:43:04 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/12 15:34:16 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/07/31 18:04:03 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.hpp"
+#include <iostream>
+#include <fstream>
+#include <string>
 
 void    replace(std::ofstream &output, std::string &text, std::string s1, std::string s2)
 {

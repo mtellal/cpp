@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:17:02 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/08 17:42:30 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/07/31 15:04:00 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	randomChump(std::string name)
 {
-	Zombie	z;
+	Zombie	z(name);
 
-	z.name = name;
 	z.announce();
 }

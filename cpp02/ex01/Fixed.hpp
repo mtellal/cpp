@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:15:52 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/15 16:31:59 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/02 13:20:58 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ class	Fixed
 {
 	private:
 		int			value;
-		static const int	bits = 8;
+		static const int	fbits = 8;
+	
 	public:
 		Fixed();
 		Fixed(Fixed const &n);
@@ -33,7 +34,7 @@ class	Fixed
 		void	setRawBits(int const n);
 
 		float	toFloat(void) const;
-		int	toInt(void);
+		int	toInt(void) const;
 
 		~Fixed();
 };

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 15:57:00 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/09 18:59:44 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/07/31 16:18:26 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,20 @@
 
 class	HumanB
 {
+	std::string	name;
+	Weapon		*w;
+
 	public:
-		HumanB(std::string n)
-		{
-			name = n;
-		}
-		void	attack();
-		void	setWeapon(Weapon *w);
-		std::string	name;
-		Weapon		*weapon;
+	
+	HumanB(void);
+	HumanB(std::string);
+	HumanB(const HumanB &);
+	~HumanB(void);
+	HumanB	&operator=(const HumanB &);
+
+
+	void	attack();
+	void	setWeapon(Weapon *w);
 };
 
 #endif

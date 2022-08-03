@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:34:28 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/09 18:44:52 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/07/31 15:52:47 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,18 @@
 
 class	Weapon {
 
+	std::string	type;
+
 	public:
-		const std::string	&getType();
-		void			setType(std::string n);
+	
+	Weapon(void);
+	Weapon(const Weapon &);
+	Weapon(std::string);
+	~Weapon(void);
+	Weapon	&operator=(const Weapon &);
 
-		Weapon()
-		{}
-		Weapon(std::string t = "")
-		{
-			type = t;
-		}
-
-	private:
-		std::string type;
+	const std::string	&getType() const;
+	void			setType(std::string);
 };
 
 #endif

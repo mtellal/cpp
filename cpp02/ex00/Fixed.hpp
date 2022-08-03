@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:11:23 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/14 16:42:04 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/01 16:36:50 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@
 
 class Fixed
 {
-	private:
-		int			f;
-		static const int	ffract = 8;
+	int			f;
+	static const int	ffract = 8;
+	
 	public:
-		int	getRawBits( void );
-		void	setRawBits( int const raw );
-		Fixed();
-		Fixed(const Fixed &);
-		Fixed	&operator=(Fixed const &n);	
-		~Fixed();
+	
+	Fixed(void);
+	Fixed(const Fixed &);
+	~Fixed(void);	
+	Fixed	&operator=(const Fixed &);
+
+	int	getRawBits( void );
+	void	setRawBits( int const raw );
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:11:02 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/08 17:43:06 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/07/31 15:10:23 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,23 @@
 
 int	main()
 {
-	Zombie	*z;
+	Zombie	*z1;
+	Zombie	z2("z2");
 
-	z = newZombie("zzz");
-	z->announce();
-	randomChump("pp");
-	delete z;
+
+	z1 = newZombie("z1");
+	z1->announce();
+	std::cout << std::endl;
+	
+	z2.announce();
+	std::cout << std::endl;
+
+	z2 = *(z1);
+	z2.announce();
+	std::cout << std::endl;
+
+	randomChump("z3");
+	std::cout << std::endl;
+
+	delete z1;
 }

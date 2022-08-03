@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:36:20 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/14 17:06:17 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/01 16:37:22 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ Fixed::Fixed(Fixed const &n)
 Fixed	&Fixed::operator=(Fixed const &n)
 {
 	std::cout << "Copy assignement operator called" << std::endl;
-	f = n.f;
+	if (this != &n)
+		f = n.f;
 	return (*this);
 }
 

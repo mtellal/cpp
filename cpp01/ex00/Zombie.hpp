@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:35:53 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/08 17:43:28 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/07/31 15:02:38 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,17 @@
 
 class Zombie {
 
-	public:
-		void	announce( void );
-		std::string	name;
-	
-	Zombie()
-	{
-		name = "";
-	}
+	std::string	name;
 
-	~Zombie()
-	{
-		std::cout << name << std::endl;
-	}
+	public:
+		
+	Zombie(void);
+	Zombie(const Zombie &);
+	Zombie(std::string);
+	~Zombie(void);
+	Zombie &operator=(const Zombie &);
+
+	void	announce( void );
 };
 
 Zombie	*newZombie(std::string name);

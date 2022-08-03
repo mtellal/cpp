@@ -6,11 +6,11 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 20:23:40 by mtellal           #+#    #+#              #
-#    Updated: 2022/04/09 16:19:08 by mtellal          ###   ########.fr        #
+#    Updated: 2022/07/31 15:32:27 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GCC = g++
+GCC = c++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 

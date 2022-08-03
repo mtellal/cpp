@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.hpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 15:31:11 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/11 15:46:58 by mtellal          ###   ########.fr       */
+/*   Created: 2022/07/31 15:19:38 by mtellal           #+#    #+#             */
+/*   Updated: 2022/07/31 15:28:34 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_HPP
-#define HEADER_HPP
+#include "Zombie.hpp"
 
-#include <iostream>
-#include <fstream>
-#include <string>
+Zombie  *zombieHorde(int N, std::string name)
+{
+        Zombie  *z;
+        int     i;
 
-#endif
+        i = 0;
+        z = new Zombie[N];
+        while (i < N)
+                z[i++].set_name(name);
+        return (z);
+}
+
