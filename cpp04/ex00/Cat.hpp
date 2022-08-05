@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 22:16:42 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/17 15:28:38 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 09:52:16 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ class	Cat: public Animal
 		Cat(void);
 		Cat(const Cat &n);
 		Cat	&operator=(const Cat &n);
-		~Cat();
+		~Cat(void);
 
 		void	makeSound(void) const;
 };
+
+std::ostream	&operator<<(std::ostream &, const Cat &);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 21:54:14 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/17 18:00:09 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 15:05:32 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,53 +23,56 @@ int	main()
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	
-	Dog o;
-	const Dog* p = &o;
-
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound();
 	j->makeSound();
 	meta->makeSound();
-	std::cout << meta->getType() << std::endl;
-	
-	p->makeSound();
-	std::cout << p->getType() << std::endl;
-	
-	WrongAnimal		a;
-	const WrongAnimal*	pa;
-	const WrongAnimal*	base_a = new WrongCat();
-	
-	WrongCat		b;
-	const WrongCat*		pb;
-	const WrongCat		copy_b(b);
+	std::cout << meta->getType() << std::endl << std::endl;
 
-	pa = &a;
-	pb = &b;
-	
-	std::cout << "WrongAnimal a" << std::endl << a.getType();
-	a.makeSound();
-	std::cout << std::endl;
-	
-	std::cout << "WrongAnimal pa -> a" << pa->getType();
-	pa->makeSound();
-	std::cout << std::endl;
-	
-	std::cout << "WrongAnimal base_a" << base_a->getType();
-	base_a->makeSound();
+	delete meta;
+	delete j;
+	delete i;
+
+	std::cout << std::endl << "/***			ADDED TESTS		***/" << std::endl << std::endl;
+
+	Dog		dog;
+	Dog		dog2(dog);
+	const Dog	*pdog = &dog2;
+
 	std::cout << std::endl;
 
-	std::cout << "WrongCat b" << b.getType();
-	b.makeSound();
+	Cat		cat;
+	Cat		cat2(cat);
+	const Cat	*pcat = &cat2;
+
 	std::cout << std::endl;
 
-	std::cout << "WrongCat pb" << pb->getType();
-	pb->makeSound();
-	std::cout << std::endl;
+	const WrongAnimal	*wa = new WrongCat();
+	const WrongAnimal	*wa2 = new WrongAnimal();
 
-	std::cout << "WrongCat copy_b" << copy_b.getType();
-	copy_b.makeSound();
-	std::cout << std::endl;
+	std::cout << std::endl << dog.getType() << std::endl;
+	dog.makeSound();
+	std::cout << std::endl << pdog->getType() << std::endl;
+	pdog->makeSound();
+	std::cout << std::endl;	
 
+	std::cout << std::endl << cat.getType() << std::endl;
+        cat.makeSound();
+        std::cout << std::endl << pcat->getType() << std::endl;
+        pcat->makeSound();                              
+        std::cout << std::endl;
+
+	std::cout << std::endl << wa->getType() << std::endl;
+        wa->makeSound();
+        std::cout << std::endl << wa2->getType() << std::endl;
+        wa2->makeSound();
+
+	wa2 = wa;
+
+	std::cout << std::endl << wa2->getType() << std::endl;
+	wa2->makeSound();
+        std::cout << std::endl;
+	
 	return (0);
 }

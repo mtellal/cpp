@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:58:11 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/17 16:20:39 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 14:19:34 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ class	Dog: public Animal
 		~Dog(void);
 		
 		void	makeSound(void) const;
-		void	dogFunction(void) const;
 };
 
 #endif

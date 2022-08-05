@@ -6,67 +6,66 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:59:54 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/18 15:15:49 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/05 13:32:58 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog(void): Animal("Dog"),  cerveau(new Brain)
+Dog::Dog(void): Animal("Dog")
 {
 	std::cout << "Dog default constrcutor called" << std::endl;
+	brain = new Brain();
 }
 
-Dog::Dog(const Dog &n): Animal("Dog"),  cerveau(new Brain)
+Dog::Dog(const Dog &n): Animal(n)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
-	type = n.type;
+	brain = new Brain();
+	brain->copyBrain(n.getBrain());
 }
 
 Dog	&Dog::operator=(const Dog &n)
 {
-	std::cout << "Dog assignment operator called" << std::endl;
 	if (this != &n)
 	{
-		type = n.type;
-		cerveau = n.cerveau;
+		this->type = n.type;
+		this->brain->copyBrain(n.getBrain());
 	}
 	return (*this);
 }
 
-Dog::~Dog()
+Dog::~Dog(void)
 {
 	std::cout << "Dog destructor called" << std::endl;
-	delete cerveau;
+	delete this->brain;
+	std::cout << "deswdfwfojwnfiwojfnwpifjnwipfojnwfpiowjnfwp" << std::endl;
 }
 
 void	Dog::makeSound(void) const
 {
-	std::cout << "Dog makeSound() function member called" << std::endl << "O U A F" << std::endl;
+	std::cout << this->type << ": O U A F !" << std::endl;
 }
 
-void	Dog::dogFunction(void) const
+Brain	*Dog::getBrain(void) const
 {
-	std::cout << "Dog dogFunction called" << std::endl;
+	return (this->brain);
 }
 
-std::string	Dog::getIdeas(unsigned int index) const
+void	Dog::setBrain(Brain *b)
 {
-	return (cerveau->getIdeas(index));
+	delete this->brain;
+	this->brain = new Brain();
+	this->brain->copyBrain(b);
 }
 
-void	Dog::setIdeas(unsigned int index, std::string idee)
+std::string	Dog::getIdeas(int i)
 {
-	cerveau->setIdeas(index, idee);
+	return (this->brain->getIdeas(i));
 }
 
-void            Dog::setAnimalIdeas(unsigned int number)
+void	Dog::setIdeas(int i, std::string s)
 {
-	cerveau->setAnimalIdeas(number);
-}
-
-void		Dog::displayAnimalIdeas(unsigned int number) const
-{
-	cerveau->displayAnimalIdeas(number);
+	this->brain->setIdeas(i, s);
 }
 

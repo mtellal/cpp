@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:58:11 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/18 15:14:51 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/05 10:41:32 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@
 
 class	Dog: public Animal
 {
-	private:
-		Brain*	cerveau;
+	Brain	*brain;
+
 	public:
 		Dog(void);
 		Dog(const Dog &n);
 		Dog	&operator=(const Dog &n);
 		~Dog(void);
 		
-		void		makeSound(void) const;
-		void		dogFunction(void) const;
-	
-		void    	setIdeas(unsigned int index, std::string newIdeas);
-                std::string     getIdeas(unsigned int index) const;
+		void	makeSound(void) const;
 		
-		void		setAnimalIdeas(unsigned int number);
-		void		displayAnimalIdeas(unsigned int number) const;
-};	
+		Brain	*getBrain(void) const;
+		void	setBrain(Brain *);
+
+		std::string	getIdeas(int);
+		void		setIdeas(int, std::string);
+};
 
 #endif

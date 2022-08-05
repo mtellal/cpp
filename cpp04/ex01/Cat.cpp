@@ -6,58 +6,70 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 22:06:44 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/18 15:34:50 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/05 13:33:08 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(void): Animal("Cat"), cerveau(new Brain)
+Cat::Cat(void): Animal("Cat")
 {
 	std::cout << "Cat default constructor called" << std::endl;
+	brain = new Brain();	
 }
 
-Cat::Cat(const Cat &n): Animal("Cat"),  cerveau(new Brain)
+Cat::Cat(const Cat &n): Animal(n)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
-	type = n.type;
+	brain = new Brain();
+	brain->copyBrain(n.getBrain());
 }
 
 Cat	&Cat::operator=(const Cat &n)
 {
-	std::cout << "Cat assignment operator called" << std::endl;
 	if (this != &n)
-		type = n.type;
+	{
+		this->type = n.type;
+		this->brain->copyBrain(n.getBrain());
+	}
 	return (*this);
 }
 
 Cat::~Cat(void)
 {
 	std::cout << "Cat destructor called" << std::endl;
-	delete cerveau;
+	delete this->brain;
 }
 
 void	Cat::makeSound(void) const
 {
-	std::cout << "Cat makeSound function memmber called" << std::endl << "M I A O U" << std::endl;
+	std::cout << this->type << ": M I A O U !" << std::endl;
 }
 
-std::string	Cat::getIdeas(unsigned int index) const
+std::ostream	&operator<<(std::ostream &out, const Cat &obj)
 {
-	return (cerveau->getIdeas(index));
+	out << obj.getType();
+	return (out);
 }
 
-void	Cat::setIdeas(unsigned int index, std::string idee)
+Brain	*Cat::getBrain(void) const
 {
-	cerveau->setIdeas(index, idee);
+	return (this->brain);
 }
 
-void            Cat::setAnimalIdeas(unsigned int number)
+void	Cat::setBrain(Brain *b)
 {
-        cerveau->setAnimalIdeas(number);
+	delete this->brain;
+	this->brain = new Brain();
+	this->brain->copyBrain(b);
 }
 
-void            Cat::displayAnimalIdeas(unsigned int number) const
+std::string	Cat::getIdeas(int i)
 {
-        cerveau->displayAnimalIdeas(number);
+	return (this->brain->getIdeas(i));
+}
+
+void	Cat::setIdeas(int i, std::string s)
+{
+	this->brain->setIdeas(i, s);
 }

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:15:11 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/03 17:37:55 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 09:28:13 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ FragTrap::FragTrap(void) : ClapTrap()
 
 FragTrap::FragTrap(const FragTrap &source) : ClapTrap(source.getName())
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy constructor called (FragTrap)" << std::endl;
 	this->setHitPoints(source.getHitPoints());
 	this->setEnergyPoints(source.getEnergyPoints());
 	this->setAttackDamage(source.getAttackDamage());
@@ -31,7 +31,7 @@ FragTrap::FragTrap(const FragTrap &source) : ClapTrap(source.getName())
 
 FragTrap::FragTrap(std::string n) : ClapTrap(n)
 {
-	this->setName("F");
+	std::cout << "Parameter constructor called (FragTrap)" << std::endl;
         this->setHitPoints(100);
         this->setEnergyPoints(100);
         this->setAttackDamage(30);
@@ -57,5 +57,5 @@ FragTrap	&FragTrap::operator=(const FragTrap &source)
 
 void	FragTrap::highFiveGuys(void)
 {
-	std::cout << "Hello guys, high five ?" << std::endl;
+	std::cout << this->getName() << ": Hello guys, high five ?" << std::endl;
 }

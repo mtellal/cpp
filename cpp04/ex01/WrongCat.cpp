@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 16:55:51 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/17 17:13:55 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 15:01:23 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ WrongCat::~WrongCat()
 
 void	WrongCat::makeSound() const
 {
-	std::cout << "WrongCat makeSound() function member called\n" << "W R O N G     C A T" << std::endl;
+	std::cout << this->type << ": W R O N G     C A T !" << std::endl;
 }

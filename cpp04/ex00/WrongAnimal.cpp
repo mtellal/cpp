@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 16:44:17 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/17 17:11:36 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 15:01:48 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(): type("WrongAnimal")
+WrongAnimal::WrongAnimal(void): type("WrongAnimal")
 {
 	std::cout << "WrongAnimal default constructor called" << std::endl;
 }
@@ -29,23 +29,22 @@ WrongAnimal::WrongAnimal(const WrongAnimal &n): type(n.type)
 
 WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &n)
 {
-	std::cout << "WrongAnimal assignment operator called" << std::endl;
 	if (this != &n)
 		type = n.type;
 	return (*this);
 }
 
-WrongAnimal::~WrongAnimal()
+WrongAnimal::~WrongAnimal(void)
 {
 	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
-std::string	WrongAnimal::getType() const 
+std::string	WrongAnimal::getType(void) const 
 {
-	return (type);
+	return (this->type);
 }
 
 void	WrongAnimal::makeSound() const
 {
-	std::cout << "WrongAnimal makeSound() function member called\n" << "W R O N G   A N I M A L" << std::endl;
+	std::cout << this->type << ": W R O N G   A N I M A L !" << std::endl;
 }

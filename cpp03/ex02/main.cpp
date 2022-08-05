@@ -6,17 +6,17 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:37:30 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/03 15:40:06 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 09:25:21 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
 	ClapTrap	a("A");
-	ScavTrap	b("B");
-	ScavTrap	c;
+	FragTrap	b("B");
+	FragTrap	c;
 
 	c = b;
 	b.attack("A");
@@ -24,6 +24,6 @@ int main()
 	b.beRepaired(10);
 	c.attack("B");
 	c.takeDamage(50);
-	c.guardGate();	
+	c.highFiveGuys();	
 	return (0);
 }

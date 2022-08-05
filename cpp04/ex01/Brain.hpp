@@ -5,34 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 18:13:08 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/18 15:24:27 by mtellal          ###   ########.fr       */
+/*   Created: 2022/08/04 15:14:43 by mtellal           #+#    #+#             */
+/*   Updated: 2022/08/05 11:38:55 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
 
-#include <string>
 #include <iostream>
+#include <string>
+
 
 class	Brain
 {
-	protected:
-		std::string	ideas[100];	
-	public:
-		Brain();
-		Brain(const Brain &n);
-		Brain	&operator=(const Brain &n);
-		virtual ~Brain();
+	std::string	ideas[100];
 
-		virtual void	setIdeas(unsigned int index, std::string newIdeas);
-		virtual std::string	getIdeas(unsigned int index) const;
-		// display number ideas
-		virtual	void		displayAnimalIdeas(unsigned int number) const;
-		// set X ideas (%1 -> "manger", %2 -> "dormir", %3 -> "jouer")
-		virtual	void		setAnimalIdeas(unsigned int numbe);
+	public:
+
+	Brain(void);
+	Brain(const Brain &);
+	~Brain(void);
+	Brain	&operator=(const Brain &);
+
+	std::string	getIdeas(int) const;
+	void		setIdeas(int, std::string);
+	
+	void		copyBrain(Brain *);
 };
 
-
-#endif
+#endif 
