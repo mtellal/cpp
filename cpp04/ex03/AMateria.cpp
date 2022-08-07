@@ -6,38 +6,43 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 17:31:48 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/18 17:36:33 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/07 10:53:27 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Amateria.hpp"
+#include "AMateria.hpp"
 
-AMateria::AMateria(): type("AMateria")
+AMateria::AMateria(void) : type("AMateria")
 {
-	std::cout << "AMateria default constructor called" << std::endl;
 }
 
-Amateria::AMateria(const std::string &type): type(type)
+AMateria::AMateria(const std::string &type): type(type)
 {
-	std::cout << "AMateria parameter constructor called" << std::endl;
 }
 
-AMateria::AMateria(const AMateria &n): type(n.type)
+AMateria::AMateria(const AMateria &n): type(n.getType())
 {
-	std::cout << "AMateria copy constructor called" << std::endl;
 }
 
-AMateria::~AMateria()
+AMateria::~AMateria(void)
 {
-	std::cout << "AMateria destructor called" << std::endl;
 }
 
-const std::string	&AMateria::getType() const
+AMateria	&AMateria::operator=(const AMateria &source)
 {
-	return (type);
+	if (this != &source)
+	{
+		this->type = source.getType();
+	}
+	return (*this);
 }
 
-void			AMateria::use(ICharacter &target)
+const std::string	&AMateria::getType(void) const
 {
+	return (this->type);
+}
 
+void	AMateria::use(ICharacter &target)
+{
+	return ;
 }

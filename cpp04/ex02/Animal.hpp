@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:23:42 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/18 17:16:43 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/05 14:40:49 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ class	Animal
 	public:
 		Animal(void);
 		Animal(const Animal &n);
-		Animal(const std::string n);
+		Animal(std::string);
 		Animal	&operator=(const Animal &n);
-		~Animal(void);
+		virtual ~Animal(void);
 
 		std::string	getType() const;
 		virtual void	makeSound(void) const = 0;

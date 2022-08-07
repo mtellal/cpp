@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:59:54 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/05 13:32:58 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/05 14:44:29 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ Dog::~Dog(void)
 {
 	std::cout << "Dog destructor called" << std::endl;
 	delete this->brain;
-	std::cout << "deswdfwfojwnfiwojfnwpifjnwipfojnwfpiowjnfwp" << std::endl;
 }
 
 void	Dog::makeSound(void) const

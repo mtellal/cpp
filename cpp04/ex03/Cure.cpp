@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/04 15:14:43 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/05 11:38:55 by mtellal          ###   ########.fr       */
+/*   Created: 2022/08/05 15:36:38 by mtellal           #+#    #+#             */
+/*   Updated: 2022/08/07 10:53:43 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#include "Cure.hpp"
 
-#include <iostream>
-#include <string>
-
-
-class	Brain
+Cure::Cure(void) : AMateria("cure")
 {
-	std::string	ideas[100];
+}
 
-	public:
+Cure::Cure(const Cure &n) : AMateria("cure")
+{
+}
 
-	Brain(void);
-	Brain(const Brain &);
-	~Brain(void);
-	Brain	&operator=(const Brain &);
+Cure::~Cure(void)
+{
+}
 
-	std::string	getIdeas(int) const;
-	void		setIdeas(int, std::string);
-	
-	void		copyBrain(Brain *);
-};
+Cure	&Cure::operator=(const Cure &source)
+{
+	return (*this);
+}
 
-#endif 
+AMateria	*Cure::clone(void) const
+{
+	return (new Cure());
+}
+
+void	Cure::use(ICharacter &o)
+{
+	std::cout << "* heals " << o.getName() << "'s wounds *" << std::endl;
+}

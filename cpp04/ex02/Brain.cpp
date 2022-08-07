@@ -5,83 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 18:27:37 by mtellal           #+#    #+#             */
-/*   Updated: 2022/04/18 15:33:42 by mtellal          ###   ########.fr       */
+/*   Created: 2022/08/04 15:14:28 by mtellal           #+#    #+#             */
+/*   Updated: 2022/08/05 11:40:18 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
-Brain::Brain()
+Brain::Brain(void)
 {
 	std::cout << "Brain default constructor called" << std::endl;
 }
 
-Brain::Brain(const Brain &n)
+Brain::Brain(const Brain &source)
 {
-	int	i = 0;
-	std::cout << "Brain parameters constructor called" << std::endl;
+	int	i;
+
+	i = 0;
+	std::cout << "Brain copy constructor called" << std::endl;
 	while (i < 100)
 	{
-		ideas[i] = n.ideas[i];
+		this->ideas[i] = source.getIdeas(i);
 		i++;
 	}
 }
 
-Brain	&Brain::operator=(const Brain &n)
+Brain::~Brain(void)
 {
-	if (this != &n)
+	std::cout << "Brain destructor called" << std::endl;
+}
+
+Brain	&Brain::operator=(const Brain &obj)
+{
+	int	i;
+
+	i = 0;
+	if (this != &obj)
 	{
-		int	i = 0;
-		while (i < 1000)
+		while (i < 100)
 		{
-			ideas[i] = n.ideas[i];
+			this->ideas[i] = obj.getIdeas(i);
 			i++;
 		}
 	}
 	return (*this);
 }
 
-Brain::~Brain()
+std::string	Brain::getIdeas(int i) const
 {
-	std::cout << "Brain destructor called" << std::endl;
+	return (this->ideas[i]);
 }
 
-void	Brain::setIdeas(unsigned int index, std::string newIdeas)
+void	Brain::setIdeas(int i, std::string s)
 {
-	if (newIdeas != "" && index < 100)
-		ideas[index] = newIdeas;
+	this->ideas[i] = s;
 }
 
-std::string	Brain::getIdeas(unsigned int index) const
+void	Brain::copyBrain(Brain *b)
 {
-	if (index < 100)
-		return (ideas[index]);
-	else
-		return ("");
-}
+	int	i = 0;
 
-void	Brain::displayAnimalIdeas(unsigned int number) const
-{
-	unsigned int	i = 0;
-	while (i < number && i < 100)
+	while (i < 100)
 	{
-		std::cout << "ideas n " << i << " = " << ideas[i] << std::endl;
+		this->ideas[i] = b->getIdeas(i);
 		i++;
 	}
-}
-
-void            Brain::setAnimalIdeas(unsigned int number)
-{
-        unsigned int     i = 0;
-        while (i < number && i < 100)
-        {
-                if (i % 2 == 0)
-                        Brain::setIdeas(i, "dormir");
-                else if (i % 3 == 0)
-                        Brain::setIdeas(i, "jouer");
-                else
-                        Brain::setIdeas(i, "manger");
-                i++;
-        }
 }
