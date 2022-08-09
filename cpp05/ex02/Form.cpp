@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:42:15 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/09 11:00:43 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:49:33 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ bool	Form::getSigned(void) const
 	return (this->isSigned);
 }
 
-const int	Form::getSGrade(void) const
+int	Form::getSGrade(void) const
 {
 	return (this->sGrade);
 }
 
-const int	Form::getXGrade(void) const
+int	Form::getXGrade(void) const
 {
 	return (this->xGrade);
 }
@@ -110,7 +110,9 @@ bool	Form::verifyExecution(Bureaucrat const &executer) const
                 this->verifyGrade(executer);
                 if (!this->getSigned())
                         throw Form::GradeUnsignedException();
-        }
+        	if (executer.getGrade() > this->getXGrade())
+			throw Form::GradeTooLowException();
+	}
         catch (const std::exception &e)
         {
                 std::cout << "Failure ! " << this->getTarget()  << " not correctly executed because: " << e.what() << std::endl;

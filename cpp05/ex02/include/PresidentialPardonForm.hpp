@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:48:13 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/08 19:23:12 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:41:55 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ class	PresidentialPardonForm : public Form
 	
 	PresidentialPardonForm	&operator=(const PresidentialPardonForm &);
 
-	void	pardon(void);
+	void	pardon(void) const;
+	void    execute(Bureaucrat const & executer) const;
 
-	std::string	getTarget(void) const;
 };
+
+std::ostream	&operator<<(std::ostream &, const PresidentialPardonForm &);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:35:40 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/08 12:54:29 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:31:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ class	Form
 
 		const std::string	getName(void) const;
 		bool			getSigned(void) const;
-		const int		getSGrade(void) const;
-		const int		getXGrade(void) const;
+		int			getSGrade(void) const;
+		int			getXGrade(void) const;
 
 		void	beSigned(const Bureaucrat &b);
 

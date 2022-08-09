@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:29:21 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/09 10:51:32 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:12:04 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ class	Bureaucrat
 	void		decrementGrade(void);
 
 	void		signForm(Form &);
-
+	void		executeForm(Form &);
 };
 
 std::ostream	&operator<<(std::ostream &, const Bureaucrat &);

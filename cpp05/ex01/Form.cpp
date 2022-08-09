@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:42:15 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/08 14:48:29 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:31:20 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ bool	Form::getSigned(void) const
 	return (this->isSigned);
 }
 
-const int	Form::getSGrade(void) const
+int	Form::getSGrade(void) const
 {
 	return (this->sGrade);
 }
 
-const int	Form::getXGrade(void) const
+int	Form::getXGrade(void) const
 {
 	return (this->xGrade);
 }

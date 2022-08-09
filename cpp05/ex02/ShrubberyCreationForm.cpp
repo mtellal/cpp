@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 15:02:10 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/09 11:01:42 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:48:51 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
         std::cout << "ShrubberyCreationForm destructor called" << std::endl;
 }
 
-ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &source)
+ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &)
 {
 	return (*this);
 }
@@ -62,9 +62,15 @@ std::string	ShrubberyCreationForm::getTarget(void) const
 
 void	ShrubberyCreationForm::execute(const Bureaucrat &executer) const
 {
-	if (Form::verifyExecution(executer) && executer.getGrade() <= this->getXGrade())
+	if (Form::verifyExecution(executer))
 	{
 		this->drawShrubbery();
-		std::cout << "Success ! ShrubberyCreationForm correctly executed !!!" << std::endl;
+		std::cout << executer.getName() << " executed " << this->getTarget() << std::endl;
 	}
+}
+
+std::ostream	&operator<<(std::ostream &out, const ShrubberyCreationForm &obj)
+{
+	out << obj.getTarget() << ", sgrade: " << obj.getSGrade() << ", xgrade: " << obj.getXGrade() << std::endl;
+	return (out);
 }

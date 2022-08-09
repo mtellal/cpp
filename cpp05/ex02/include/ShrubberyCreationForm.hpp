@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:55:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/08 19:55:29 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:21:06 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ class	ShrubberyCreationForm: public Form
 		std::string	getTarget(void) const;
 		void    execute(Bureaucrat const & executer) const;
 };
+
+std::ostream	&operator<<(std::ostream &, const ShrubberyCreationForm &);
 
 #endif

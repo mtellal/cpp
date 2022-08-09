@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:29:01 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/09 10:49:46 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:12:41 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,15 @@ void	Bureaucrat::signForm(Form &f)
 	f.beSigned(*this);
 }
 
+void	Bureaucrat::executeForm(Form &f)
+{
+	f.execute(*this);
+}
+
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj)
 {
 	out << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return (out);
 }
+
+

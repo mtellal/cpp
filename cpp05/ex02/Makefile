@@ -6,7 +6,7 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/07 10:56:25 by mtellal           #+#    #+#              #
-#    Updated: 2022/08/08 17:10:12 by mtellal          ###   ########.fr        #
+#    Updated: 2022/08/09 14:50:36 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,15 @@ SRC = main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequest
 
 OBJ = $(SRC:.cpp=.o)
 
+HEADER = -I include
+
 all: $(NAME)
 
-%.o:%.c
-	$(GCC) $(FLAGS) -o $@ -c $<
+%.o:%.cpp
+	$(GCC) $(FLAGS) $(HEADER)  -o $@ -c $< 
 
 $(NAME): $(OBJ)
-	$(GCC) $(FLAGS) -o $(NAME) $(OBJ)
+	$(GCC) $(FLAGS) $(HEADER) -o $(NAME) $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
