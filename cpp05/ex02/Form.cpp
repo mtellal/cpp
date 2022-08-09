@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:42:15 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/08 14:48:29 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:00:43 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,27 @@ const int	Form::getXGrade(void) const
 	return (this->xGrade);
 }
 
+std::string	Form::getTarget(void) const
+{
+	return (this->target);
+}
+
 void	Form::beSigned(const Bureaucrat &b)
 {
-	if (this->sGrade < b.getGrade())
-		throw Form::GradeTooLowException();
-	else
-		this->isSigned = true;
+	try
+	{
+		if (this->sGrade < b.getGrade())
+			throw Form::GradeTooLowException();
+		else
+		{
+			this->isSigned = true;
+			std::cout << b.getName() << " signed " << this->getName() << std::endl;
+		}
+	}
+	catch(const std::exception &e)
+	{
+		std::cout << b.getName() << " couldn't sign " << this->getName() << " because: " << e.what() << std::endl;
+	}
 }
 
 std::ostream	&operator<<(std::ostream &out, const Form &obj)
@@ -80,4 +95,26 @@ std::ostream	&operator<<(std::ostream &out, const Form &obj)
 	return (out);
 }
 
+void	Form::verifyGrade(Bureaucrat const &b) const
+{
+	if (b.getGrade() < 1)
+		throw Form::GradeTooHighException();
+	else if (b.getGrade() > 150)
+		throw Form::GradeTooLowException();
+}
 
+bool	Form::verifyExecution(Bureaucrat const &executer) const
+{
+	try
+        {
+                this->verifyGrade(executer);
+                if (!this->getSigned())
+                        throw Form::GradeUnsignedException();
+        }
+        catch (const std::exception &e)
+        {
+                std::cout << "Failure ! " << this->getTarget()  << " not correctly executed because: " << e.what() << std::endl;
+        	return (false);
+	}
+	return (true);
+}

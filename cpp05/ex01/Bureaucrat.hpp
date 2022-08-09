@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:29:21 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/07 18:06:11 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/08 12:55:53 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+
+class	Form;
 
 class	Bureaucrat
 {
@@ -53,7 +55,7 @@ class	Bureaucrat
 	void		incrementGrade(void);
 	void		decrementGrade(void);
 
-	void		signForm(int, std::string, std::string) const;
+	void		signForm(Form &);
 
 };
 

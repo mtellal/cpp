@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:29:01 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/08 13:11:23 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 10:49:46 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ Bureaucrat::Bureaucrat(void): name("Burreacrat"), grade(150)
 Bureaucrat::Bureaucrat(std::string s): name(s), grade(150)
 {
 	std::cout << "Bureaucrat parameter constructor called" << std::endl;
+}
+
+Bureaucrat::Bureaucrat(std::string s, int g): name(s), grade(g)
+{
+        std::cout << "Bureaucrat parameter constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &source): name(source.getName()), grade(source.getGrade())
@@ -83,16 +88,7 @@ void	Bureaucrat::decrementGrade(void)
 
 void	Bureaucrat::signForm(Form &f)
 {
-	try
-	{
-		f.beSigned(*this);
-	}
-	catch(const std::exception &e)
-	{
-		std::cout << this->getName() << " couldn't sign " << f.getName() << " because: " << e.what() << std::endl;
-		return ;
-	}
-	std::cout << this->getName() << " signed " << f.getName() << std::endl;
+	f.beSigned(*this);
 }
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &obj)

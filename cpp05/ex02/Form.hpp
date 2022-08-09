@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:35:40 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/08 12:54:29 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:01:02 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 
 class	Form
 {
-	
 	const std::string	name;
 	bool			isSigned;
 	const int		sGrade;
 	const int		xGrade;
+
+	protected:
 
 	class	GradeTooHighException : public std::exception
 	{
@@ -41,6 +42,17 @@ class	Form
 			}
 	};
 
+	class	GradeUnsignedException : public std::exception
+	{
+		public:
+			const char *what() const throw()
+			{
+				return ("form not signed");
+			}
+	};
+
+	std::string		target;
+
 	public:
 		Form(void);
 		Form(std::string);
@@ -53,8 +65,13 @@ class	Form
 		bool			getSigned(void) const;
 		const int		getSGrade(void) const;
 		const int		getXGrade(void) const;
+		std::string		getTarget(void) const;
 
 		void	beSigned(const Bureaucrat &b);
+		virtual void	execute(Bureaucrat const & executer) const = 0;
+
+		void	verifyGrade(Bureaucrat const &) const;
+		bool	verifyExecution(Bureaucrat const &) const;
 
 };
 
