@@ -5,58 +5,89 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 17:42:48 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/16 14:52:34 by mtellal          ###   ########.fr       */
+/*   Created: 2022/08/16 15:53:57 by mtellal           #+#    #+#             */
+/*   Updated: 2022/08/16 21:00:52 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
 
-void    convertChar(char *str)
+bool    isChar(char *s)
 {
-        char    var;
+        int     i = 0;
 
-        var = str[0];
-        std::cout << "char: " << valueToPrint(var) << std::endl;
-        std::cout << "int: " << static_cast<int>(var) << std::endl;
-        std::cout << "float: " << static_cast<float>(var) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(var) << std::endl;
-
+        if (((s[i] >= 'A' && s[i] <= 'Z')
+                        || (s[i] <= 'z' && s[i] >= 'a'))
+                        && !s[i + 1])
+                        return (true);
+        return (false);
 }
 
-void    convertInt(char *str)
+bool    isInt(char *s)
 {
-        int             var;
+        int    		i = 0;
+	long int	a = std::atol(s);
 
-        var = std::atoi(str);
-        std::cout << "char: " << valueToPrint(static_cast<char>(var)) << std::endl;
-        std::cout << "int: " << var << std::endl;
-        std::cout << "float: " << static_cast<float>(var) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(var) << std::endl;
-
+        if (s[i] == '-' || s[i] == '+')
+                s++;
+        while (s[i])
+        {
+                if (s[i] < '0' || s[i] > '9')
+                        return (false);
+                i++;
+        }
+        if (!s[i] && i <= 10 && (a <= INT_MAX && a >= INT_MIN))
+                return (true);
+        return (false);
 }
 
-void    convertFloat(char *str)
+bool    isFloat(char *s)
 {
-        float           var;
+        int     	i = 0;
+        int     	nbPoint = 0;
+	double		f = std::stod(s);
 
-        var = std::stof(str);
-        std::cout << "char: " << valueToPrint(static_cast<char>(var)) << std::endl;
-        std::cout << "int: " << static_cast<int>(var) << std::endl;
-        std::cout << "float: " << var << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(var) << std::endl;
-
+	if (s[i] == '-' || s[i] == '+')
+		s++;
+        while (s[i] && s[i] != 'f')
+        {
+                if (s[i] < '0' || s[i] > '9')
+                {
+                        if (s[i] == '.')
+				nbPoint++;
+			else
+                                return (false);
+                }
+                i++;
+        }
+        if (s[i] == 'f' && !s[i + 1] && i <= 57 && nbPoint <= 1 
+			&& i > 0 && s[i - 1] != '.'
+			&& (f >= FLT_MIN && f <= FLT_MAX))
+                return (true);
+	return (false);
 }
 
-void    convertDouble(char *str)
+bool    isDouble(char *s)
 {
-        double           var;
+        int     i = 0;
+        int     nbPoint = 0;
 
-        var = std::stod(str);
-        std::cout << "char: " << static_cast<char>(var) << std::endl;
-        std::cout << "int: " << static_cast<int>(var) << std::endl;
-        std::cout << "float: " << static_cast<float>(var) << "f" << std::endl;
-        std::cout << "double: " << var << std::endl;
-
+        if (s[i] == '-' || s[i] == '+')
+                s++;
+        while (s[i])
+        {
+                if (s[i] < '0' || s[i] > '9')
+                {
+                        if (s[i] == '.')
+                                nbPoint++;
+                        else
+                                return (false);
+                }
+                i++;
+        }
+        if (!s[i] && i <= 327 && nbPoint <= 1 
+                        && i > 0 && s[i - 1] != '.' )
+                return (true);
+	return (false);
 }
 

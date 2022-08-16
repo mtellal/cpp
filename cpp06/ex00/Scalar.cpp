@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:14:59 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/16 14:59:53 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/16 18:27:32 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,83 +44,17 @@ std::string	valueToPrint(int c)
 		return ("Non displayable");
 }
 
-bool	isChar(char *s)
-{
-	int	i = 0;
-
-	if (((s[i] >= 'A' && s[i] <= 'Z') 
-			|| (s[i] <= 'z' && s[i] >= 'a'))
-			&& !s[i + 1])
-			return (true);
-	return (false);
-}
-
-bool	isInt(char *s)
-{
-	int	i = 0;
-
-	if (s[i] == '-' || s[i] == '+')
-		i++;
-	while (s[i])
-	{
-		if (s[i] < '0' || s[i] > '9')
-			return (false);
-		i++;
-	}
-	if (!s[i] && i <= 10)
-		return (true);	
-	return (false);
-}
-
-bool	isFloat(char *s)
-{
-	int	i = 0;
-	int	nbPoint = 0;
-
-	while (s[i] && s[i] != 'f')
-	{
-		if (s[i] < '0' || s[i] > '9')
-		{
-			if (s[i] == '.')
-				nbPoint++;
-			else
-				return (false);
-		}
-		i++;	
-	}
-	if (!s[i] || nbPoint > 1)
-		return (false);
-	if (s[i] == 'f' && !s[i + 1] && i <= 57)
-		return (true);
-	return (false);
-}
-
-bool	isDouble(char *s)
-{
-	int	i = 0;
-
-	while (s[i])
-	{
-		if (s[i] < '0' || s[i] > '9')
-			return (false);
-		i++;
-	}
-	if (!s[i] && i <= 327)
-		return (true);
-	return (false);
-}
-
 void	Scalar::handleConversion(char *s)
 {
 	if (isChar(s))
 		convertChar(s);
-	if (isInt(s))
+	else if (isInt(s))
 		convertInt(s);
-		/*if (isFloat(s))
-		this->convertFloat(s);
-	if (isDouble(s))
-		this->convertDouble(s);
-*/
+	else if (isFloat(s))
+		convertFloat(s);
+	else if (isDouble(s))
+		convertDouble(s);
+
 }
 
 
