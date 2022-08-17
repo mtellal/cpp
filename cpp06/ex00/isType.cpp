@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:57 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/16 21:00:52 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/17 10:24:50 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
 
-bool    isChar(char *s)
+bool    Scalar::isChar(char *s)
 {
         int     i = 0;
 
@@ -23,10 +23,10 @@ bool    isChar(char *s)
         return (false);
 }
 
-bool    isInt(char *s)
+bool    Scalar::isInt(char *s)
 {
         int    		i = 0;
-	long int	a = std::atol(s);
+	long int	a;
 
         if (s[i] == '-' || s[i] == '+')
                 s++;
@@ -36,16 +36,17 @@ bool    isInt(char *s)
                         return (false);
                 i++;
         }
+	a = std::atol(s);
         if (!s[i] && i <= 10 && (a <= INT_MAX && a >= INT_MIN))
                 return (true);
         return (false);
 }
 
-bool    isFloat(char *s)
+bool    Scalar::isFloat(char *s)
 {
         int     	i = 0;
         int     	nbPoint = 0;
-	double		f = std::stod(s);
+	double		f;
 
 	if (s[i] == '-' || s[i] == '+')
 		s++;
@@ -60,14 +61,19 @@ bool    isFloat(char *s)
                 }
                 i++;
         }
-        if (s[i] == 'f' && !s[i + 1] && i <= 57 && nbPoint <= 1 
-			&& i > 0 && s[i - 1] != '.'
-			&& (f >= FLT_MIN && f <= FLT_MAX))
-                return (true);
+        if (s[i] == 'f' && !s[i + 1] 
+			&& nbPoint <= 1 && i > 0 && s[i - 1] != '.')
+        {
+		f = std::stod(s);
+		if (f >= FLT_MIN && f <= FLT_MAX)
+			return (true);
+		else
+			return (false);
+	}
 	return (false);
 }
 
-bool    isDouble(char *s)
+bool    Scalar::isDouble(char *s)
 {
         int     i = 0;
         int     nbPoint = 0;
@@ -91,3 +97,20 @@ bool    isDouble(char *s)
 	return (false);
 }
 
+bool	Scalar::isException(char *s)
+{
+	std::string	str(s);
+	std::string	tab[3] = {"-inf", "+inf", "nan"};
+	int		i = 0;
+
+	while (i < 3)
+	{
+		if (str == tab[i] || str == tab[i] + "f")
+		{
+			this->exception = tab[i];
+			return (true);
+		}
+		i++;
+	}
+	return (false);
+}

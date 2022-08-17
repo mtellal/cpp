@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:14:59 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/16 18:27:32 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/17 10:09:43 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,24 @@ std::string	valueToPrint(int c)
 
 void	Scalar::handleConversion(char *s)
 {
-	if (isChar(s))
-		convertChar(s);
-	else if (isInt(s))
-		convertInt(s);
-	else if (isFloat(s))
-		convertFloat(s);
-	else if (isDouble(s))
-		convertDouble(s);
+	double	var;
 
+	if (isChar(s))
+		var = extractChar(s);
+	else if (isInt(s))
+		var = extractInt(s);
+	else if (isFloat(s))
+		var = extractFloat(s);
+	else if (isDouble(s))
+		var = extractDouble(s);
+	else if (isException(s))
+		return (printException());
+	else
+	{
+		std::cout << "unknow type" << std::endl;
+		return ;
+	}
+		display(var);
 }
 
 

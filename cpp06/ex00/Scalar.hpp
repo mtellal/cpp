@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:12:26 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/16 20:43:48 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/17 10:15:22 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,27 @@
 class	Scalar
 {
 
-	int	initType;
-	int	nbBytes;
+	std::string	exception;
+	double		value;
+
+	void	display(double var);
+
+	double	extractChar(char *);
+	double	extractInt(char *);
+	double	extractFloat(char *);
+	double	extractDouble(char *);
+
+	void	printChar(double);
+	void	printInt(double);
+	void	printFloat(double);
+	void	printDouble(double);
+	void	printException(void);
+
+	bool	isChar(char *);
+	bool	isInt(char *);
+	bool	isFloat(char *);
+	bool	isDouble(char *);
+	bool	isException(char *);
 
 	public:
 
@@ -42,17 +61,5 @@ class	Scalar
 	void	handleConversion(char *);
 
 };
-
-std::string	valueToPrint(int);
-
-void	convertChar(char *);
-void	convertInt(char *);
-void	convertFloat(char *);
-void	convertDouble(char *);
-
-bool	isChar(char *s);
-bool	isInt(char *);
-bool	isFloat(char *);
-bool	isDouble(char *);
 
 #endif

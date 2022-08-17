@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:42:48 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/16 21:27:28 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/17 10:23:16 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
 
-void	printChar(double i)
+void	Scalar::printChar(double i)
 {
 	std::cout << "char: ";
 	if (i >= 33 && i <= 126)
@@ -24,7 +24,7 @@ void	printChar(double i)
 	std::cout << std::endl;
 }
 
-void	printInt(double i)
+void	Scalar::printInt(double i)
 {
 	std::cout << "int: ";
 	if (i < INT_MIN || i > INT_MAX)
@@ -34,65 +34,63 @@ void	printInt(double i)
 	std::cout << std::endl;
 }
 
-void	printFloat(double i)
+void	Scalar::printFloat(double i)
 {
 	std::cout << "float: ";
-	if (i < -FLT_MAX || i > FLT_MAX)
+	if (i < -FLT_MAX + 1 || i > FLT_MAX)
 		std::cout << "impossible";
 	else
 		std::cout << static_cast<float>(i) << "f";
 	std::cout << std::endl;
 }
 
-void	printDouble(double i)
+void	Scalar::printDouble(double i)
 {
 	std::cout << "double: " << i << std::endl;
 }
 
-void    convertChar(char *str)
+void	Scalar::printException(void)
 {
-        char    var;
-
-        var = str[0];
-        printChar(var);
-	printInt(var);
-        printFloat(var);
-	std::cout << "double: " << static_cast<double>(var) << std::endl;
-
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossbile" << std::endl;
+	std::cout << "float: " << this->exception << "f" << std::endl;
+	std::cout << "double: " << this->exception << std::endl;
 }
 
-void    convertInt(char *str)
+double	Scalar::extractChar(char *str)
+{
+	return (str[0]);
+}
+
+double	Scalar::extractInt(char *str)
 {
         int             var;
 
         var = std::atoi(str);
-        printChar(var);
-	printInt(var);
-        printFloat(var);
-	std::cout << "double: " << static_cast<double>(var) << std::endl;
-
+	return (static_cast<double>(var));
 }
 
-void    convertFloat(char *str)
+double	Scalar::extractFloat(char *str)
 {
         float           var;
 
         var = std::stof(str);
-        printChar(var);
-	printInt(var);
-	printFloat(var);
-        std::cout << "double: " << static_cast<double>(var) << std::endl;
-
+	return (static_cast<double>(var));
 }
 
-void    convertDouble(char *str)
+double	Scalar::extractDouble(char *str)
 {
         double           var;
 
-
         var = std::stod(str);
-	printChar(var);
-	printInt(var);
-	printFloat(var);
-        std::cout << "double: " << var << std::endl;
+	return (var);
 }
+
+void	Scalar::display(double var)
+{
+	this->printChar(var);
+	this->printInt(var);
+	this->printFloat(var);
+	this->printDouble(var);
+}
+
