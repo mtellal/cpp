@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:12:26 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/17 10:15:22 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/17 12:43:00 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 #include <iomanip>
 #include <limits.h>
 #include <float.h>
-
-#define CHAR 	0
-#define INT 	1
-#define FLOAT 	2	
-#define DOUBLE 	3
 
 class	Scalar
 {

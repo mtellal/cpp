@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:57 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/17 10:24:50 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/17 10:32:08 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ bool    Scalar::isChar(char *s)
 {
         int     i = 0;
 
-        if (((s[i] >= 'A' && s[i] <= 'Z')
-                        || (s[i] <= 'z' && s[i] >= 'a'))
-                        && !s[i + 1])
+        if (s[i] >= 0 && !s[i + 1])
                         return (true);
         return (false);
 }
