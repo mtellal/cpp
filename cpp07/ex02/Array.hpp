@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:04:37 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/19 11:51:19 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/19 16:58:47 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,30 @@ class	Array
 	T	*tab;
 	size_t	length;
 
-	void	copyTab(T *, T *);
+	void	copyTab(T *, T *, size_t);
 
 	public:
-	
+
+	class	Segfault : public std::exception
+	{
+		const char *what(void) const throw() 
+		{
+			return ("Segfault: index invalid");
+		}
+	};
+
 	Array(void);
 	Array(unsigned int);
 	Array(const Array &);
 	~Array(void);
-	Array	&operator=(const Array &);
-	Array	&operator=(const T &);
-	T	&operator[](size_t i);
+	Array<T>	&operator=(const Array<T> &);
+	Array		&operator=(const T &);
+	T		&operator[](size_t i);
 
 	size_t	size(void) const;
 	T	*getTab(void) const;
-	
+	size_t	getLength(void) const;	
+
 	void	displayTab(void) const;
 };
 
@@ -56,17 +65,31 @@ Array<T>::Array(unsigned int n) : length(n)
 template <class T>
 Array<T>::Array(const Array<T> &s)
 {
+	length = s.getLength();
         tab = new T[s.size()];
-        copyTab(tab, s.getTab());
+        copyTab(s.getTab(), this->tab, s.size());
 }
 
 template <class T>
 Array<T>::~Array(void)
 {
-        delete[] tab;
+	if (this->tab)
+        	delete[] this->tab;
 }
 
 /////////////		OPERAOTRS
+
+template <class T>
+Array<T>	&Array<T>::operator=(const Array<T> &source)
+{
+	if (this != &source)
+	{
+		this->length = source.getLength();
+		this->tab = new T[source.size()];
+		this->copyTab(source.getTab(), this->tab, source.size());
+	}
+	return (*this);
+}
 
 template <class T>
 Array<T>	&Array<T>::operator=(const T &value)
@@ -78,23 +101,20 @@ Array<T>	&Array<T>::operator=(const T &value)
 template <class T>
 T	&Array<T>::operator[](size_t i)
 {
-	if (i > this->length)
-	{
-		std::cout << "seg fault: index invalid" << std::endl;
-		exit(0);
-	}
+	if (i >= this->length || i < 0)
+		throw Array<T>::Segfault(); 
 	return (this->tab[i]);
 }
 
 /////////////		MEMBERS FUNCTIONS 
 
 template <class T>
-void    Array<T>::copyTab(T *src, T *dst)
+void    Array<T>::copyTab(T *src, T *dst, size_t l)
 {
-        unsigned int    i;
+        size_t	i;
 
         i = 0;
-        while (i < src->size())
+	while (i < l)
         {
                 dst[i] = src[i];
                 i++;
@@ -111,6 +131,12 @@ template <class T>
 T       *Array<T>::getTab(void) const
 {
         return (this->tab);
+}
+
+template <class T>
+size_t	Array<T>::getLength(void) const
+{
+	return (this->length);
 }
 
 template <class T>
