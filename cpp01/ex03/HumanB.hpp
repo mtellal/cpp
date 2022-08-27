@@ -17,20 +17,25 @@
 
 class	HumanB
 {
-	std::string	name;
-	Weapon		*w;
-
 	public:
 	
-	HumanB(void);
-	HumanB(std::string);
-	HumanB(const HumanB &);
-	~HumanB(void);
-	HumanB	&operator=(const HumanB &);
+		HumanB(void);
+		HumanB(std::string);
+		HumanB(const HumanB &);
+		~HumanB(void);
+		HumanB	&operator=(const HumanB &);
 
 
-	void	attack();
-	void	setWeapon(Weapon *w);
+		void	attack();
+		void	setWeapon(Weapon &w);
+
+		std::string			getName(void) const;
+		Weapon				*getWeapon(void) const;
+
+	private:
+
+		std::string	name;
+		Weapon		*w;
 };
 
 #endif

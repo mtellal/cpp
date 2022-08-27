@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:20:15 by mtellal           #+#    #+#             */
-/*   Updated: 2022/07/29 16:16:44 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/22 16:03:14 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	availableCmd()
 {
-	std::cout << "- ADD x\t\tadd a new contact x\n- SEARCH x\tsearch x in repository\n- EXIT\t\tquit the program" << std::endl;
+	std::cout << "- ADD \t\tadd a new contact \n- SEARCH \tsearch contact  in repository\n- EXIT\t\tquit the program" << std::endl;
 	std::cout << "phone_book: ";
 }
 

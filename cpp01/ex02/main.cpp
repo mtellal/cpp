@@ -15,17 +15,16 @@
 
 int	main()
 {
-	std::string	s;
-	std::string	*stringPTR;
+	std::string	s = "HI THIS IS BRAIN";
+	std::string	*stringPTR = &s;
 	std::string	&stringREF(s);
 
-	s = "HI THIS IS BRAIN";
-	stringPTR = &s;
 	std::cout << "address string = " << &s << std::endl;
-	std::cout << "address stringPTR = " << &stringPTR << std::endl;
+	std::cout << "address stringPTR = " << stringPTR << std::endl;
 	std::cout << "address stringREF = " << &stringREF << std::endl;
 	std::cout << "value string = " << s << std::endl;
 	std::cout << "value stringPTR = " << *stringPTR << std::endl;
 	std::cout << "value stringREF = " << stringREF << std::endl;
-		
+	
+	return (0);
 }

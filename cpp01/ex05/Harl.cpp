@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:41:24 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/01 12:04:17 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/27 12:46:29 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 Harl::Harl(void)
 {
-	static void (Harl::*tab[4])(void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
-	ptr = tab;
 	std::cout << "Harl created" << std::endl;
+}
+
+Harl::Harl(const Harl &)
+{
+	std::cout << "Harl copy constructor called" << std::endl;
+}
+
+Harl	&Harl::operator=(const Harl &)
+{
+	return (*this);
 }
 
 Harl::~Harl(void)
@@ -41,17 +49,18 @@ void	Harl::warning(void)
 
 void	Harl::error(void)
 {
-	std::cout << "This is unacceptable! I want to  speak to the manager now." << std::endl;
+	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
 void	Harl::complain(std::string level)
 {
 	int	i = 0;
-	
-	std::string tab[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	std::string t[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	void	(Harl::*ptr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
 	while (i < 4)
 	{
-		if (tab[i] == level)
+		if (t[i] == level)
 		{
 			(this->*ptr[i])();
 			break ;

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+make
+
+outfile=outfile
+outfile_=outfile.replace
+
+echo " test with empty file"
+
+echo "test ./replace outfile '' ''"
+./replace $outfile "" "" 
+diff $outfile $outfile_
+
+echo "./replace outfile '' x"
+./replace $outfile "" x
+diff $outfile $outfile_
+
+echo "./replace outfile x ''"
+./replace $outfile x ""
+diff $outfile $outfile_
+
+echo "--------------------------"
+
+echo "test with normal replace"
+
+echo "salut\nlw dkd" > $outfile
+
+echo "./replace outfile salut oui"
+./replace $outfile salut oui
+diff $outfile $outfile_
+
+echo "./replace outfile salut ''"
+./replace $outfile salut ""
+diff $outfile $outfile_
+
+echo "sa lut\nwdfwfw" > $outfile 
+
+echo "./replace outfile sa ''"
+./replace $outfile sa ''
+diff $outfile $outfile_
+
+

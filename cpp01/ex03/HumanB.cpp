@@ -12,21 +12,18 @@
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(void)
+HumanB::HumanB(void) : name("HumanB"), w(NULL)
 {
-	name = "HumanB";
 	std::cout << "HumanB " << name << " created" << std::endl;
 }
 
-HumanB::HumanB(std::string s)
+HumanB::HumanB(std::string s) : name(s), w(NULL)
 {
-	name = s;
 	std::cout << "HumanB " << name << " created" << std::endl;
 }
 
-HumanB::HumanB(const HumanB &source)
+HumanB::HumanB(const HumanB &source) : name(source.getName()), w(source.getWeapon())
 {
-	name = source.name;
 	std::cout << "HumanB " << name << " created" << std::endl;
 }
 
@@ -39,18 +36,31 @@ HumanB	&HumanB::operator=(const HumanB &source)
 {
 	if (this != &source)
 	{
-		this->name = source.name;
-		this->w = source.w;
+		this->name = source.getName();
+		this->w = source.getWeapon();
 	}
 	return (*this);
 }
 
 void	HumanB::attack()
 {
-	std::cout << this->name << " attacks with their " << this->w->getType() << std::endl;
+	if (w)
+		std::cout << this->name << " attacks with their " << this->w->getType() << std::endl;
+	else
+		std::cout << this->name << ": no weapon setted" << std::endl;
 }
 
-void	HumanB::setWeapon(Weapon *w)
+void	HumanB::setWeapon(Weapon &w)
 {
-	this->w = w;
+	this->w = &w;
+}
+
+std::string	HumanB::getName(void) const
+{
+	return (this->name);	
+}
+
+Weapon		*HumanB::getWeapon(void) const
+{
+	return (this->w);
 }

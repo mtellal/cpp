@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 14:29:56 by mtellal           #+#    #+#             */
-/*   Updated: 2022/07/30 14:39:14 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/22 16:23:33 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,62 @@ int	errField()
 	std::cout << "champ vide\nVeuillez reessayer" << std::endl;	
 	return (0);
 }
+
+////////////////	GETTERS		////////////
+
+std::string	Contact::getFirstName(void) const
+{
+	return (this->firstName);
+}
+
+std::string     Contact::getLastName(void) const
+{
+        return (this->lastName);
+}
+
+std::string     Contact::getNickName(void) const
+{
+        return (this->nickName);
+}
+
+std::string     Contact::getSecret(void) const
+{
+        return (this->secret);
+}
+
+std::string     Contact::getPhoneNumber(void) const
+{
+        return (this->phoneNumber);
+}
+
+//////////////		SETTERS		////////////
+
+void	Contact::setFirstName(std::string s)
+{
+	this->firstName = s;
+}
+
+void    Contact::setLastName(std::string s)
+{
+        this->lastName = s;
+}
+
+void    Contact::setNickName(std::string s)
+{
+        this->nickName = s;
+}
+
+void    Contact::setSecret(std::string s)
+{
+        this->secret = s;
+}
+
+void    Contact::setPhoneNumber(std::string s)
+{
+        this->phoneNumber = s;
+}
+
+
 
 int	Contact::setInfos()
 {

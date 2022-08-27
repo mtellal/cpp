@@ -17,17 +17,23 @@
 
 class	HumanA
 {
-	std::string	name;
-	Weapon		&w;
-
 	public:
 
-	HumanA(std::string, Weapon &);
-	HumanA(const HumanA &);
-	~HumanA(void);
-	HumanA	&operator=(const HumanA &);
+		HumanA(std::string, Weapon &);
+		HumanA(const HumanA &);
+		~HumanA(void);
+		HumanA	&operator=(const HumanA &);
 
-	void	attack();
+		void	attack();
+
+		const std::string 	&getName(void) const;
+		Weapon				&getWeapon(void) const;
+
+	private:
+
+		std::string name;
+		Weapon		&w;
 };
 
 #endif
+

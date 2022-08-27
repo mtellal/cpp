@@ -18,8 +18,6 @@
 
 class Zombie {
 
-	std::string	name;
-
 	public:
 
 	Zombie(void);
@@ -27,8 +25,14 @@ class Zombie {
 	~Zombie(void);
 	Zombie &operator=(const Zombie &);
 
-	void	announce( void );
-	void	set_name(std::string);
+	void			announce( void );
+	void			set_name(std::string);
+	std::string		getName(void) const;
+
+
+	private:
+
+	std::string name;
 };
 
 Zombie	*zombieHorde(int N, std::string name);

@@ -12,21 +12,18 @@
 
 #include "Weapon.hpp"
 
-Weapon::Weapon(void)
+Weapon::Weapon(void) : type("WeaponType")
 {
-	type = "";
 	std::cout << "Weapon created" << std::endl;
 }
 
-Weapon::Weapon(std::string s)
+Weapon::Weapon(std::string s) : type(s)
 {
-	type = s;
 	std::cout << "Weapon " << s << " created" << std::endl;
 }
 
-Weapon::Weapon(const Weapon &source)
+Weapon::Weapon(const Weapon &source) : type(source.getType())
 {
-	type = source.type;
 	std::cout << "Weapon " << type << " created" << std::endl;
 }
 
@@ -39,14 +36,14 @@ Weapon	&Weapon::operator=(const Weapon &source)
 {
 	if (this != &source)
 	{
-		this->type = source.type;
+		this->type = source.getType();
 	}
 	return (*this);
 }
 
-const	std::string	&Weapon::getType() const
+std::string		Weapon::getType() const
 {
-	return (type);
+	return (this->type);
 }
 
 void	Weapon::setType(std::string newType)

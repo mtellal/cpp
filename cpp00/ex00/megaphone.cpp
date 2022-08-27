@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:14:18 by mtellal           #+#    #+#             */
-/*   Updated: 2022/07/20 11:14:21 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/22 15:51:04 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,24 @@ void	display(char *s, int space = 0)
 	i = 0;
 	while (s && s[i])
 	{
-		if (s[i] >= 97 && s[i] <= 122)
+		if (s[i] >= 'a' && s[i] <= 'z')
 			std::cout << (char)(s[i] - 32);
 		else
 			std::cout << s[i];
 		i++;
 	}
-	if (space)
+	if (space && i > 0  && s[i - 1] != ' ')
 		std::cout << " ";
 }
 
+int	strlen(char *s)
+{
+	int	i = 0;
+
+	while (s && s[i])
+		i++;
+	return (i);
+}
 
 int	main(int argc, char **argv)
 {
@@ -39,7 +47,7 @@ int	main(int argc, char **argv)
 		i = 1;
 		while (i < argc)
 		{
-			if (i != argc - 1)
+			if (i != argc - 1 && argv[i + 1][0] != ' ')
 				display(argv[i], 1);
 			else
 				display(argv[i]);

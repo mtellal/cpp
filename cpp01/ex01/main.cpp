@@ -14,12 +14,12 @@
 
 int	main()
 {
-	Zombie	*z;
+	Zombie	*z = NULL;
 	int	i;
 
 	i = 0;
 	z = zombieHorde(5, "zzz");
-	while (i < 5)
+	while (i < 5 && z)
 	{
 		z[i].announce();
 		i++;

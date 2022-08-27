@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   EasyFind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 20:34:28 by mtellal           #+#    #+#             */
-/*   Updated: 2022/07/31 15:52:47 by mtellal          ###   ########.fr       */
+/*   Created: 2022/08/22 17:20:56 by mtellal           #+#    #+#             */
+/*   Updated: 2022/08/22 17:36:58 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_H
-#define WEAPON_H
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
 
 #include <iostream>
-#include <string>
 
-class	Weapon {
+#include <array>
+#include <vector>
 
-	public:
-	
-		Weapon(void);
-		Weapon(const Weapon &);
-		Weapon(std::string);
-		~Weapon(void);
-		Weapon	&operator=(const Weapon &);
+template <class T>
+int	easyFind(T c, int i)
+{
+	size_t	l;
+	size_t	j = 0;
 
-		std::string			getType(void) const;
-		void				setType(std::string);
-
-	
-	private:
-
-		std::string	type;
-};
+	l = c.size();
+	while (j < l)
+	{
+		if (c.at(j) == i)
+			return j;
+		j++;
+	}
+	return (-1);
+}
 
 #endif

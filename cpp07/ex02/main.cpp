@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 09:53:06 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/19 17:00:34 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/19 20:19:32 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int main()
 	tabd[4] = 2.5;
 	tabd.displayTab();
 
-	std::cout << "  TEST STRING" << std::endl;
+	std::cout << "	TEST STRING" << std::endl;
 	std::string	s("uneChaine");
 	setTab(tabs, s);
        	tabs[3] = "chaine1";

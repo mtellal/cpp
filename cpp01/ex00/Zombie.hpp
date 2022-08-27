@@ -16,9 +16,8 @@
 #include <string>
 #include <iostream>
 
-class Zombie {
-
-	std::string	name;
+class Zombie 
+{
 
 	public:
 		
@@ -28,7 +27,12 @@ class Zombie {
 	~Zombie(void);
 	Zombie &operator=(const Zombie &);
 
-	void	announce( void );
+	void			announce( void );
+	std::string		getName(void) const;
+
+	private:
+
+	std::string	name;
 };
 
 Zombie	*newZombie(std::string name);

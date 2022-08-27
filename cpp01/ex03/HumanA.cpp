@@ -12,15 +12,14 @@
 
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string s, Weapon &a) : w(a)
+HumanA::HumanA(std::string s, Weapon &a) : name(s), w(a)
 {
-	name = s;
 	std::cout << "HumanA " << name << " created" << std::endl;
 }
 
-HumanA::HumanA(const HumanA &source) : w(source.w)
+HumanA::HumanA(const HumanA &source) : name(source.getName()), w(source.getWeapon())
 {
-	name = source.name;
+	std::cout << "HumanA " << name << " created" << std::endl;
 }
 
 HumanA::~HumanA(void)
@@ -32,8 +31,8 @@ HumanA	&HumanA::operator=(const HumanA &source)
 {
 	if (this != &source)
 	{
-		this->name = source.name;
-		this->w = source.w;
+		this->name = source.getName();
+		this->w = source.getWeapon();
 	}
 	return (*this);
 }
@@ -41,4 +40,14 @@ HumanA	&HumanA::operator=(const HumanA &source)
 void	HumanA::attack()
 {
 	std::cout << this->name << " attacks with their " << this->w.getType() << std::endl;
+}
+
+const std::string	&HumanA::getName(void) const
+{
+	return (this->name);	
+}
+
+Weapon		&HumanA::getWeapon(void) const
+{
+	return (this->w);
 }

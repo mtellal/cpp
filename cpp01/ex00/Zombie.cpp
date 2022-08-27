@@ -12,21 +12,18 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(void)
+Zombie::Zombie(void): name("zombie")
 {
-	name = "";
 	std::cout << "Zombie created" << std::endl;
 }
 
-Zombie::Zombie(const Zombie &source)
+Zombie::Zombie(const Zombie &source) : name(source.getName())
 {
-	name = source.name;
-	std::cout << "Zombie " << source.name << " created" << std::endl;
+	std::cout << "Zombie " << name << " created" << std::endl;
 }
 
-Zombie::Zombie(std::string n)
+Zombie::Zombie(std::string n) : name(n)
 {
-	name = n;
 	std::cout << "Zombie " << name << " created" << std::endl;
 }
 
@@ -39,7 +36,7 @@ Zombie	&Zombie::operator=(const Zombie &source)
 {
 	if (this != &source)
 	{
-		this->name = source.name;
+		this->name = source.getName();
 	}
 	return (*this);
 }
@@ -47,4 +44,9 @@ Zombie	&Zombie::operator=(const Zombie &source)
 void    Zombie::announce(void)
 {
         std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+std::string		Zombie::getName(void) const
+{
+	return (this->name);
 }
