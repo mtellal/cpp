@@ -17,7 +17,6 @@
 
 class	ScavTrap : public ClapTrap
 {
-
 	public:
 		ScavTrap(void);
 		ScavTrap(const ScavTrap &);

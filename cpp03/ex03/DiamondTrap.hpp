@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,21 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+#define DIAMONDTRAP_HPP
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class	FragTrap : public ClapTrap
+class	DiamondTrap : virtual public ScavTrap, virtual public FragTrap
 {
 	public:
-		FragTrap(void);
-		FragTrap(const FragTrap &);
-		FragTrap(std::string);
-		~FragTrap(void);
-		FragTrap	&operator=(const FragTrap &);
 
-		void	highFivesGuys(void);
+		DiamondTrap(void);
+		DiamondTrap(const DiamondTrap &);
+		DiamondTrap(std::string);
+		~DiamondTrap(void);
+		DiamondTrap &operator=(const DiamondTrap &);
+
+        void    whoAmi(void);
+
+    private:
+
+        std::string name;
+
 };
 
 #endif
