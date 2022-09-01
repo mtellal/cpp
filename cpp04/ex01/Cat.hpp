@@ -22,13 +22,13 @@ class	Cat: public Animal
 		Cat(void);
 		Cat(const Cat &n);
 		Cat	&operator=(const Cat &n);
-		~Cat(void);
+		virtual ~Cat(void);
 
-		void		makeSound(void) const;
-		Brain		*getBrain(void) const;
+		virtual void	makeSound(void) const;
+		Brain			*getBrain(void) const;
 
-		std::string	getIdea(unsigned int i) const;
-		void		setIdea(unsigned int i, std::string);
+		std::string		getIdea(unsigned int i) const;
+		void			setIdea(unsigned int i, std::string);
 
 	private:
 

@@ -22,9 +22,9 @@ class	Dog: public Animal
 		Dog(void);
 		Dog(const Dog &n);
 		Dog	&operator=(const Dog &n);
-		~Dog(void);
+		virtual ~Dog(void);
 		
-		void	makeSound(void) const;
+		virtual void	makeSound(void) const;
 };
 
 #endif

@@ -21,9 +21,9 @@ class	Cat: public Animal
 		Cat(void);
 		Cat(const Cat &n);
 		Cat	&operator=(const Cat &n);
-		~Cat(void);
+		virtual ~Cat(void);
 
-		void	makeSound(void) const;
+		virtual void	makeSound(void) const;
 };
 
 #endif 

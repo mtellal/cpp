@@ -23,13 +23,13 @@ class	Dog: public Animal
 		Dog(void);
 		Dog(const Dog &n);
 		Dog	&operator=(const Dog &n);
-		~Dog(void);
+		virtual ~Dog(void);
 		
-		void		makeSound(void) const;
-		Brain		*getBrain(void) const;
+		virtual void	makeSound(void) const;
+		Brain			*getBrain(void) const;
 
-		std::string	getIdea(unsigned int) const;
-		void		setIdea(unsigned int, std::string);
+		std::string		getIdea(unsigned int) const;
+		void			setIdea(unsigned int, std::string);
 
 	private:
 
