@@ -26,6 +26,4 @@ class	Cat: public Animal
 		void	makeSound(void) const;
 };
 
-std::ostream	&operator<<(std::ostream &, const Cat &);
-
 #endif 

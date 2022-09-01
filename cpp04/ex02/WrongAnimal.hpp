@@ -18,17 +18,20 @@
 
 class	WrongAnimal
 {
-	protected:
-		std::string	type;
+
 	public:
+	
 		WrongAnimal(void);
-		WrongAnimal(const std::string &n);
 		WrongAnimal(const WrongAnimal &n);
 		WrongAnimal	&operator=(const WrongAnimal &n);
 		virtual ~WrongAnimal(void);
 
 		std::string	getType(void) const;
-		virtual void	makeSound(void) const;
+		void		makeSound(void) const;
+
+	protected:
+
+		std::string type;
 };
 
 #endif

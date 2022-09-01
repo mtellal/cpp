@@ -14,25 +14,29 @@
 
 AMateria::AMateria(void) : type("AMateria")
 {
+	std::cout << "Default constructor called (AMateria)" << std::endl;
 }
 
 AMateria::AMateria(const std::string &type): type(type)
 {
+	std::cout << "Parameter constructor called (AMateria)" << std::endl;
 }
 
-AMateria::AMateria(const AMateria &n): type(n.getType())
+AMateria::AMateria(const AMateria &n): type(n.type)
 {
+	std::cout << "Copy constructor called (AMateria)" << std::endl;
 }
 
 AMateria::~AMateria(void)
 {
+	std::cout << "Destructor called (AMateria)" << std::endl;
 }
 
 AMateria	&AMateria::operator=(const AMateria &source)
 {
 	if (this != &source)
 	{
-		this->type = source.getType();
+		this->type = source.type;
 	}
 	return (*this);
 }
@@ -44,5 +48,5 @@ const std::string	&AMateria::getType(void) const
 
 void	AMateria::use(ICharacter &target)
 {
-	return ;
+	std::cout << target.getName() << " use " << this->type << " (AMateria)" << std::endl;
 }

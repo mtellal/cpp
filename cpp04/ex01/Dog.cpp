@@ -6,23 +6,25 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:59:54 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/05 14:44:29 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 14:19:29 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog(void): Animal("Dog")
+Dog::Dog(void): Animal()
 {
 	std::cout << "Dog default constrcutor called" << std::endl;
-	brain = new Brain();
+	this->type = "Dog";
+	this->brain = new Brain();
 }
 
-Dog::Dog(const Dog &n): Animal(n)
+Dog::Dog(const Dog &n): Animal()
 {
 	std::cout << "Dog copy constructor called" << std::endl;
-	brain = new Brain();
-	brain->copyBrain(n.getBrain());
+	this->type = n.type;
+	this->brain = new Brain();
+	this->brain->copyBrain(n.getBrain());
 }
 
 Dog	&Dog::operator=(const Dog &n)
@@ -43,7 +45,7 @@ Dog::~Dog(void)
 
 void	Dog::makeSound(void) const
 {
-	std::cout << this->type << ": O U A F !" << std::endl;
+	std::cout << this->type << ": ouaf!" << std::endl;
 }
 
 Brain	*Dog::getBrain(void) const
@@ -51,20 +53,19 @@ Brain	*Dog::getBrain(void) const
 	return (this->brain);
 }
 
-void	Dog::setBrain(Brain *b)
+std::string	Dog::getIdea(unsigned int i) const
 {
-	delete this->brain;
-	this->brain = new Brain();
-	this->brain->copyBrain(b);
+	if (i < 100)
+		return (this->brain->getIdea(i));
+	else
+		std::cout << "Index " << i << " idea invalid (getIdea)" << std::endl;
+	return ("");
 }
 
-std::string	Dog::getIdeas(int i)
+void	Dog::setIdea(unsigned int i, std::string s)
 {
-	return (this->brain->getIdeas(i));
+	if (i < 100)
+		return (this->brain->setIdea(i, s));
+	else
+		std::cout << "Index " << i << " idea invalid (setIdea)" << std::endl;
 }
-
-void	Dog::setIdeas(int i, std::string s)
-{
-	this->brain->setIdeas(i, s);
-}
-

@@ -12,14 +12,16 @@
 
 #include "Dog.hpp"
 
-Dog::Dog(void): Animal("Dog")
+Dog::Dog(void): Animal()
 {
 	std::cout << "Dog default constrcutor called" << std::endl;
+	this->type = "Dog";
 }
 
-Dog::Dog(const Dog &n): Animal(n)
+Dog::Dog(const Dog &n): Animal()
 {
 	std::cout << "Dog copy constructor called" << std::endl;
+	this->type = n.type;
 }
 
 Dog	&Dog::operator=(const Dog &n)
@@ -36,5 +38,5 @@ Dog::~Dog(void)
 
 void	Dog::makeSound(void) const
 {
-	std::cout << this->type << std::endl << "O U A F" << std::endl;
+	std::cout << this->type << ": ouaf!" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 22:16:42 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/05 12:39:47 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 09:52:16 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,21 @@
 
 class	Cat: public Animal
 {
-	Brain	*brain;
-
 	public:
 		Cat(void);
 		Cat(const Cat &n);
 		Cat	&operator=(const Cat &n);
 		~Cat(void);
 
-		void	makeSound(void) const;
-		
-		Brain	*getBrain(void) const;
-		void	setBrain(Brain *);
+		void		makeSound(void) const;
+		Brain		*getBrain(void) const;
 
-		std::string	getIdeas(int);
-		void		setIdeas(int, std::string);
+		std::string	getIdea(unsigned int i) const;
+		void		setIdea(unsigned int i, std::string);
+
+	private:
+
+		Brain *brain;
 };
-
-std::ostream	&operator<<(std::ostream &, const Cat &);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 21:54:14 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/05 14:46:01 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 15:05:32 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,21 @@ void	printXIdeas(int x, Brain *brain)
 {
 	int	i = 0;
 
-	while (i < x)
+	while (i < x && i < 100)
 	{
-		std::cout << brain->getIdeas(i) << std::endl;
+		std::cout << brain->getIdea(i) << std::endl;
 		i++;
 	}
+}
+
+void	printDogIdea(unsigned int i, const Dog &obj)
+{
+	std::cout << obj.getType() << " idea " << i << " = " << obj.getIdea(i) << std::endl;
+}
+
+void	printCatIdea(unsigned int i, const Cat &obj)
+{
+	std::cout << obj.getType() << " idea " << i << " = " << obj.getIdea(i) << std::endl;
 }
 
 int	main()
@@ -61,67 +71,70 @@ int	main()
 
 	const Animal* i = new Cat();
 	const Animal* j = new Dog();
+	//const Animal	x;
 
 	std::cout << std::endl;
 	j->makeSound();
 	std::cout << std::endl;
 	i->makeSound();
 	std::cout << std::endl;
-	i->getIdeas(0);
 
 	delete i;
 	delete j;
 
 	std::cout << std::endl <<  "////	Deep copy tests		////" << std::endl << std::endl;
 
-	Brain	brain;
+	std::cout << " WITH DOGS" << std::endl;
 
-	Dog	dog;
-	Dog	copyDog;
+	{
+		Dog	dog;
+		Dog	copyDog;
+		
+		std::cout << std::endl; 
+		
+		dog.setIdea(0, "ouaf");
+		printDogIdea(0, dog);
+		
+		Dog dog2(dog);
+		printDogIdea(0, dog2);
+
+		copyDog = dog;
+		printDogIdea(0, copyDog);
+	}	
+
+	std::cout << std::endl << " WITH CATS" << std::endl;
 	
-	brain.setIdeas(0, "Dog ideas");
-	dog.setBrain(&brain);
-
-	std::cout << std::endl << "dog type = " << dog.getType() << " | sound = ";
-	dog.makeSound();
-	std::cout << "dog ideas = " << dog.getIdeas(0) << std::endl << std::endl;
-	copyDog = dog;
-	std::cout << "copydog type = " << copyDog.getType() << " | sound = ";
-        copyDog.makeSound();
-        std::cout << "copyDog ideas = " << copyDog.getIdeas(0) << std::endl << std::endl;
+	{
+		Cat	cat;
+		Cat	copyCat;
 	
-	Dog	ccopyDog(dog);
-	std::cout << std::endl << "ccopydog type = " << ccopyDog.getType() << " | sound = ";
-        ccopyDog.makeSound();
-        std::cout << "ccopyDog ideas = " << ccopyDog.getIdeas(0) << std::endl << std::endl;
+		std::cout << std::endl;
 
-	Cat 	cat;
-	Cat	copyCat;
+		cat.setIdea(0, "miaou");
+		printCatIdea(0, cat);
+		
+		Cat cat2(cat);
+		printCatIdea(0, cat2);
 
-        brain.setIdeas(1, "Cat ideas");
-        cat.setBrain(&brain);
+		copyCat = cat;
+		printCatIdea(0, copyCat);
 
-        std::cout << std::endl << "cat type = " << cat.getType() << " | sound = ";
-        cat.makeSound();
-        std::cout << "cat ideas = " << cat.getIdeas(0) << std::endl << std::endl;
-        copyCat = cat;
-        std::cout << "copyCat type = " << copyCat.getType() << " | sound = ";
-        copyCat.makeSound();
-        std::cout << "copyCat ideas = " << copyCat.getIdeas(0) << std::endl << std::endl;
+	}
+	
+	std::cout << std::endl << " WITH ANIMALS" << std::endl;
 
-        Cat     ccopyCat(cat);
-        std::cout << std::endl << "ccopyCat type = " << ccopyCat.getType() << " | sound = ";
-        ccopyCat.makeSound();
-        std::cout << "ccopyCat ideas = " << ccopyCat.getIdeas(0) << std::endl << std::endl;
+	{
 
-	Animal	*t[4];
+		Animal	*t[4];
 
-	initTab(t);
+		initTab(t);
 
-	t[0]->makeSound();
-	t[1]->makeSound();
+		t[0]->makeSound();
+		t[1]->makeSound();
 
-	clearTab(t);
+		clearTab(t);
+	
+	}
 	
 	return (0);
 }

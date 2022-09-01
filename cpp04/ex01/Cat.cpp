@@ -6,23 +6,25 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 22:06:44 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/05 13:33:08 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/04 13:59:06 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(void): Animal("Cat")
+Cat::Cat(void): Animal()
 {
 	std::cout << "Cat default constructor called" << std::endl;
-	brain = new Brain();	
+	this->type = "Cat";
+	this->brain = new Brain();
 }
 
-Cat::Cat(const Cat &n): Animal(n)
+Cat::Cat(const Cat &n): Animal()
 {
 	std::cout << "Cat copy constructor called" << std::endl;
-	brain = new Brain();
-	brain->copyBrain(n.getBrain());
+	this->type = n.type;
+	this->brain = new Brain();
+	this->brain->copyBrain(n.getBrain());
 }
 
 Cat	&Cat::operator=(const Cat &n)
@@ -43,13 +45,7 @@ Cat::~Cat(void)
 
 void	Cat::makeSound(void) const
 {
-	std::cout << this->type << ": M I A O U !" << std::endl;
-}
-
-std::ostream	&operator<<(std::ostream &out, const Cat &obj)
-{
-	out << obj.getType();
-	return (out);
+	std::cout << this->type << ": miaou !" << std::endl;
 }
 
 Brain	*Cat::getBrain(void) const
@@ -57,19 +53,19 @@ Brain	*Cat::getBrain(void) const
 	return (this->brain);
 }
 
-void	Cat::setBrain(Brain *b)
+std::string	Cat::getIdea(unsigned int i) const
 {
-	delete this->brain;
-	this->brain = new Brain();
-	this->brain->copyBrain(b);
+	if (i < 100)
+		return (this->brain->getIdea(i));
+	else
+		std::cout << "Index " << i << " idea invalid (getIdea)" << std::endl;
+	return ("");
 }
 
-std::string	Cat::getIdeas(int i)
+void	Cat::setIdea(unsigned int i, std::string s)
 {
-	return (this->brain->getIdeas(i));
-}
-
-void	Cat::setIdeas(int i, std::string s)
-{
-	this->brain->setIdeas(i, s);
+	if (i < 100)
+		return (this->brain->setIdea(i, s));
+	else
+		std::cout << "Index " << i << " idea invalid (setIdea)" << std::endl;
 }

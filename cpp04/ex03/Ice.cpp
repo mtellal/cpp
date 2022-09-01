@@ -14,22 +14,25 @@
 
 Ice::Ice(void): AMateria("ice")
 {
+	std::cout << "Default constructor called (Ice)" << std::endl;
 }
 
-Ice::Ice(const Ice &n): AMateria("ice")
+Ice::Ice(const Ice &): AMateria("ice")
 {
+	std::cout << "Parameter constructor called (Ice)" << std::endl;
 }
 
-Ice	&Ice::operator=(const Ice &n)
+Ice	&Ice::operator=(const Ice &)
 {
 	return (*this);
 }
 
 Ice::~Ice(void)
 {
+	std::cout << "Destructor called (Ice)" << std::endl;
 }
 
-AMateria*	Ice::clone() const
+AMateria*	Ice::clone(void) const
 {
 	return (new Ice());
 }

@@ -18,6 +18,7 @@
 class	Dog: public Animal
 {
 	public:
+	
 		Dog(void);
 		Dog(const Dog &n);
 		Dog	&operator=(const Dog &n);

@@ -25,8 +25,8 @@ int	main()
 	
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
 	j->makeSound();
+	i->makeSound();
 	meta->makeSound();
 	std::cout << meta->getType() << std::endl << std::endl;
 
@@ -36,43 +36,109 @@ int	main()
 
 	std::cout << std::endl << "/***			ADDED TESTS		***/" << std::endl << std::endl;
 
-	Dog		dog;
-	Dog		dog2(dog);
-	const Dog	*pdog = &dog2;
+	std::cout << "WITH DOGS" << std::endl;
 
-	std::cout << std::endl;
+	{
 
-	Cat		cat;
-	Cat		cat2(cat);
-	const Cat	*pcat = &cat2;
+		Dog				dog;
+		Dog				dog2(dog);
+		Dog				dog3;
+		Dog				*pdog = new Dog();
+		const Dog		*cpdog = new Dog();
+		Animal			*animal = new Dog();
+		const Animal	*canimal = new Dog();
 
-	std::cout << std::endl;
+		dog3 = dog;
+		std::cout << std::endl << dog.getType() << std::endl;
+		dog.makeSound();
+		std::cout << std::endl << dog2.getType() << std::endl;
+		dog2.makeSound();
+		std::cout << std::endl << dog3.getType() << std::endl;
+		dog3.makeSound();
+		std::cout << std::endl << pdog->getType() << std::endl;
+		pdog->makeSound();
+		std::cout << std::endl << cpdog->getType() << std::endl;
+		cpdog->makeSound();
+		std::cout << std::endl << animal->getType() << std::endl;
+		animal->makeSound();
+		std::cout << std::endl << canimal->getType() << std::endl;
+		canimal->makeSound();
+		std::cout << std::endl;	
 
-	const WrongAnimal	*wa = new WrongCat();
-	const WrongAnimal	*wa2 = new WrongAnimal();
+		delete pdog;
+		delete cpdog;
+		delete animal;
+		delete canimal;
+	}
 
-	std::cout << std::endl << dog.getType() << std::endl;
-	dog.makeSound();
-	std::cout << std::endl << pdog->getType() << std::endl;
-	pdog->makeSound();
-	std::cout << std::endl;	
+	std::cout << std::endl << "WITH CATS" << std::endl;
 
-	std::cout << std::endl << cat.getType() << std::endl;
-        cat.makeSound();
-        std::cout << std::endl << pcat->getType() << std::endl;
-        pcat->makeSound();                              
-        std::cout << std::endl;
+	{
 
-	std::cout << std::endl << wa->getType() << std::endl;
-        wa->makeSound();
-        std::cout << std::endl << wa2->getType() << std::endl;
-        wa2->makeSound();
+		Cat				cat;
+		Cat				cat2(cat);
+		Cat				cat3;
+		Cat				*pcat = new Cat();
+		const Cat		*cpcat= new Cat();
+		Animal			*animal = new Cat();
+		const Animal	*canimal = new Cat();
 
-	wa2 = wa;
+		cat3 = cat;
+		std::cout << std::endl << cat.getType() << std::endl;
+		cat.makeSound();
+		std::cout << std::endl << cat2.getType() << std::endl;
+		cat2.makeSound();
+		std::cout << std::endl << cat3.getType() << std::endl;
+		cat3.makeSound();
+		std::cout << std::endl << pcat->getType() << std::endl;
+		pcat->makeSound();
+		std::cout << std::endl << cpcat->getType() << std::endl;
+		cpcat->makeSound();
+		std::cout << std::endl << animal->getType() << std::endl;
+		animal->makeSound();
+		std::cout << std::endl << canimal->getType() << std::endl;
+		canimal->makeSound();
+		std::cout << std::endl;	
 
-	std::cout << std::endl << wa2->getType() << std::endl;
-	wa2->makeSound();
-        std::cout << std::endl;
+		delete pcat;
+		delete cpcat;
+		delete animal;
+		delete canimal;
+	}
 	
+	{
+
+		WrongCat			wcat;
+		WrongCat			wcat2(wcat);
+		WrongCat			wcat3;
+		WrongCat			*pwcat = new WrongCat();
+		const WrongCat		*cpwcat= new WrongCat();
+		WrongAnimal			*animal = new WrongCat();
+		const WrongAnimal	*canimal = new WrongCat();
+
+		wcat3 = wcat;
+		std::cout << std::endl << wcat.getType() << std::endl;
+		wcat.makeSound();
+		std::cout << std::endl << wcat2.getType() << std::endl;
+		wcat2.makeSound();
+		std::cout << std::endl << wcat3.getType() << std::endl;
+		wcat3.makeSound();
+		std::cout << std::endl << pwcat->getType() << std::endl;
+		pwcat->makeSound();
+		std::cout << std::endl << cpwcat->getType() << std::endl;
+		cpwcat->makeSound();
+		std::cout << std::endl << animal->getType() << std::endl;
+		animal->makeSound();
+		std::cout << std::endl << canimal->getType() << std::endl;
+		canimal->makeSound();
+		std::cout << std::endl;	
+
+		delete pwcat;
+		delete cpwcat;
+		delete animal;
+		delete canimal;
+	}
+	
+
 	return (0);
 }

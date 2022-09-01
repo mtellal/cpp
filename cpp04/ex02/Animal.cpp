@@ -22,10 +22,9 @@ Animal::Animal(const Animal &n): type(n.type)
 	std::cout << "Animal copy constructor called" << std::endl;
 }
 
-Animal::Animal(std::string s)
+Animal::Animal(std::string s) : type(s)
 {
 	std::cout << "Animal parameter constructor called" << std::endl;
-	type = s;
 }
 
 Animal	&Animal::operator=(const Animal &n)

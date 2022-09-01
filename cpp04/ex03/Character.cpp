@@ -23,49 +23,74 @@ void	initItems(AMateria *t[4])
 	}
 }
 
-Character::Character(void)
+Character::Character(void) : name("Personnage")
 {
-	initItems(items);
+	std::cout << "Default constructor called (Character)" << std::endl;
+	initItems(this->items);
 }
 
 Character::Character(std::string s) : name(s)
 {
-	initItems(items);
+	std::cout << "Parameter constructor called (Character)" << std::endl;
+	initItems(this->items);
 }
 
-Character::Character(const Character &source) : name(source.getName())
+Character::Character(const Character &source) : name(source.name)
 {
-	initItems(items);
-}
+	int i = 0;
 
-Character::~Character(void)
-{
-	int	i = 0;
-
+	std::cout << "Copy constructor called (Character)" << std::endl;
+	initItems(this->items);
 	while (i < 4)
 	{
-		delete items[i];
+		if (this->items[i])
+			delete this->items[i];
+		if (source.items[i])
+			this->items[i] = source.items[i]->clone();
+		else
+			this->items[i] = NULL;
 		i++;
 	}
 }
 
+Character::~Character(void)
+{
+	int				i = 0;
+
+	std::cout << "Destructor called (Character)" << std::endl;
+	while (i < 4)
+	{
+		if (this->items[i])
+			delete this->items[i];
+		i++;
+	}
+
+}
+
 Character	&Character::operator=(const Character &source)
 {
-	this->items[0] = source.getItems(0);
-	this->items[1] = source.getItems(1);
-	this->items[2] = source.getItems(2);
-	this->items[3] = source.getItems(3);
-	this->name = source.getName();
+	if (this != &source)
+	{
+		int i = 0;
+	
+		while (i < 4)
+		{
+			if (this->items[i])
+				delete this->items[i];
+			if (source.items[i])
+				this->items[i] = source.items[i]->clone();
+			else
+				this->items[i] = NULL;
+			i++;
+		}
+		this->name = source.name;
+	}
+	return (*this);
 }
 
 std::string const       &Character::getName(void) const
 {
         return (this->name);
-}
-
-AMateria	*Character::getItems(int i) const
-{
-	return (this->items[i]);
 }
 
 void	Character::equip(AMateria *m)
@@ -76,7 +101,7 @@ void	Character::equip(AMateria *m)
 	{
 		if (!this->items[i])
 		{
-			this->items[i] = m->clone();
+			this->items[i] = m;
 			break ;
 		}
 		i++;
@@ -87,11 +112,10 @@ void	Character::unequip(int idx)
 {
 	int	i = 0;
 
-	while (i < 4)
+	while (i < 4 && idx >= 0 && idx <= 3)
 	{
 		if (i == idx && this->items[i])
 		{
-			delete this->items[i];
 			this->items[i] = NULL;
 			break ;
 		}
@@ -101,7 +125,10 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter &target)
 {
-	if (this->items[idx])
+	if (idx >= 0 && idx <= 3 && this->items[idx])
+	{
+		std::cout << this->name << ": ";
 		this->items[idx]->use(target);
+	}
 }
 

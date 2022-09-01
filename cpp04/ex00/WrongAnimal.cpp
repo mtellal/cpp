@@ -17,14 +17,9 @@ WrongAnimal::WrongAnimal(void): type("WrongAnimal")
 	std::cout << "WrongAnimal default constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(const std::string &n): type(n)
-{
-	std::cout << "WrongAnimal parameters constructor called" << std::endl;
-}
-
 WrongAnimal::WrongAnimal(const WrongAnimal &n): type(n.type)
 {
-	std::cout << "WroingAnimal copyu constructor called" << std::endl;
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
 }
 
 WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &n)
@@ -46,5 +41,5 @@ std::string	WrongAnimal::getType(void) const
 
 void	WrongAnimal::makeSound() const
 {
-	std::cout << this->type << ": W R O N G   A N I M A L !" << std::endl;
+	std::cout << this->type << ": WrongAnimal sound !" << std::endl;
 }

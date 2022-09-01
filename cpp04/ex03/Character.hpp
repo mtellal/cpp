@@ -17,9 +17,6 @@
 
 class	Character : public ICharacter
 {
-	AMateria	*items[4];
-	std::string	name;
-
 	public:
 
 	Character(void);
@@ -34,7 +31,10 @@ class	Character : public ICharacter
 	void unequip(int idx);
 	void use(int idx, ICharacter &target);
 
-	AMateria	*getItems(int) const;
+	private:
+
+		AMateria		*items[4];
+		std::string		name;
 };
 
 #endif 

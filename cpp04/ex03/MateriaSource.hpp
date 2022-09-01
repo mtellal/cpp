@@ -17,7 +17,6 @@
 
 class	MateriaSource : public IMateriaSource
 {
-	AMateria	*tab[4];
 
 	public:
 	
@@ -28,6 +27,10 @@ class	MateriaSource : public IMateriaSource
 
 		void		learnMateria(AMateria *);
 		AMateria	*createMateria(std::string const &);
+
+	private:
+
+		AMateria *tab[4];
 };
 
 #endif

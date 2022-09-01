@@ -23,7 +23,7 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 %.o:%.cpp
-	$(GCC) $(CFRLAGS) -o $@ -c $<
+	$(GCC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
 	$(GCC) $(CFLAGS) -o $(NAME) $(OBJ)

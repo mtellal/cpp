@@ -25,7 +25,7 @@ Brain::Brain(const Brain &source)
 	std::cout << "Brain copy constructor called" << std::endl;
 	while (i < 100)
 	{
-		this->ideas[i] = source.getIdeas(i);
+		this->ideas[i] = source.getIdea(i);
 		i++;
 	}
 }
@@ -44,21 +44,24 @@ Brain	&Brain::operator=(const Brain &obj)
 	{
 		while (i < 100)
 		{
-			this->ideas[i] = obj.getIdeas(i);
+			this->ideas[i] = obj.getIdea(i);
 			i++;
 		}
 	}
 	return (*this);
 }
 
-std::string	Brain::getIdeas(int i) const
+std::string	Brain::getIdea(unsigned int i) const
 {
-	return (this->ideas[i]);
+	if (i < 100)
+		return (this->ideas[i]);
+	return ("");
 }
 
-void	Brain::setIdeas(int i, std::string s)
+void	Brain::setIdea(unsigned int i, std::string s)
 {
-	this->ideas[i] = s;
+	if (i < 100)
+		this->ideas[i] = s;
 }
 
 void	Brain::copyBrain(Brain *b)
@@ -67,7 +70,8 @@ void	Brain::copyBrain(Brain *b)
 
 	while (i < 100)
 	{
-		this->ideas[i] = b->getIdeas(i);
+		this->ideas[i] = b->getIdea(i);
 		i++;
 	}
 }
+

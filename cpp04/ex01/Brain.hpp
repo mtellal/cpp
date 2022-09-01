@@ -19,19 +19,21 @@
 
 class	Brain
 {
-	std::string	ideas[100];
 
 	public:
 
-	Brain(void);
-	Brain(const Brain &);
-	~Brain(void);
-	Brain	&operator=(const Brain &);
+		Brain(void);
+		Brain(const Brain &);
+		~Brain(void);
+		Brain	&operator=(const Brain &);
 
-	std::string	getIdeas(int) const;
-	void		setIdeas(int, std::string);
-	
-	void		copyBrain(Brain *);
+		std::string	getIdea(unsigned int) const;
+		void		setIdea(unsigned int, std::string);
+		void		copyBrain(Brain *);
+
+	private:
+
+		std::string ideas[100];
 };
 
 #endif 

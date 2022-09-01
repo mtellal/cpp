@@ -14,17 +14,20 @@
 
 Cure::Cure(void) : AMateria("cure")
 {
+	std::cout << "Default constructor called (Cure)" << std::endl;
 }
 
-Cure::Cure(const Cure &n) : AMateria("cure")
+Cure::Cure(const Cure &) : AMateria("cure")
 {
+	std::cout << "Parameter constructor called (Cure)" << std::endl;
 }
 
 Cure::~Cure(void)
 {
+	std::cout << "Destructor called (Cure)" << std::endl;
 }
 
-Cure	&Cure::operator=(const Cure &source)
+Cure	&Cure::operator=(const Cure &)
 {
 	return (*this);
 }

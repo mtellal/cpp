@@ -22,40 +22,59 @@ void	initTabMateria(AMateria	*t[4])
 	}
 }
 
-void	copyTabMateria(AMateria *t[4], AMateria *t1[4])
-{
-	int	i = 0;
-
-	while (i < 4)
-	{
-		t[i] = t1[i];
-		i++;
-	}
-}
-
 MateriaSource::MateriaSource(void)
 {
+	std::cout << "Default constructor called (MateriaSource)" << std::endl;
 	initTabMateria(tab);
 }
 
 MateriaSource::MateriaSource(const MateriaSource &source)
 {
-}
-
-MateriaSource::~MateriaSource(void)
-{
 	int	i = 0;
 
+	std::cout << "Copy constructor called (MateriaSource)" << std::endl;
 	while (i < 4)
 	{
-		delete tab[i];
+		if (this->tab[i])
+			delete tab[i];
+		if (source.tab[i])
+			this->tab[i] = source.tab[i];
+		else
+			this->tab[i] = NULL;
 		i++;
 	}
 }
 
 MateriaSource	&MateriaSource::operator=(const MateriaSource &source)
 {
+	if (this != &source)
+	{
+		int i = 0;
 
+		while (i < 4)
+		{
+			if (this->tab[i])
+				delete tab[i];
+			if (source.tab[i])
+				this->tab[i] = source.tab[i];
+			else
+				this->tab[i] = NULL;
+			i++;
+		}
+	}
+	return (*this);
+}
+
+MateriaSource::~MateriaSource(void)
+{
+	int i = 0;
+	std::cout << "Destructor called (MateriaSource)" << std::endl;
+	while (i < 4)
+	{
+		if (this->tab[i])
+			delete this->tab[i];
+		i++;
+	}
 }
 
 void	MateriaSource::learnMateria(AMateria *obj)
@@ -83,4 +102,5 @@ AMateria	*MateriaSource::createMateria(std::string const &s)
 			return (this->tab[i]->clone());
 		i++;
 	}
+	return (NULL);
 }

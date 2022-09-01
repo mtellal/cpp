@@ -12,14 +12,16 @@
 
 #include "Cat.hpp"
 
-Cat::Cat(void): Animal("Cat")
+Cat::Cat(void): Animal()
 {
 	std::cout << "Cat default constructor called" << std::endl;
+	this->type = "Cat";
 }
 
-Cat::Cat(const Cat &n): Animal(n)
+Cat::Cat(const Cat &n): Animal()
 {
 	std::cout << "Cat copy constructor called" << std::endl;
+	this->type = n.type;
 }
 
 Cat	&Cat::operator=(const Cat &n)
@@ -36,11 +38,5 @@ Cat::~Cat(void)
 
 void	Cat::makeSound(void) const
 {
-	std::cout << this->type << ": M I A O U !" << std::endl;
-}
-
-std::ostream	&operator<<(std::ostream &out, const Cat &obj)
-{
-	out << obj.getType();
-	return (out);
+	std::cout << this->type << ": miaou !" << std::endl;
 }
