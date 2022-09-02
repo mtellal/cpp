@@ -17,7 +17,7 @@
 int main()
 {
 
-	ShrubberyCreationForm	f("shrubbery");
+	/* ShrubberyCreationForm	f("shrubbery");
 	RobotomyRequestForm	r("robot");
 	PresidentialPardonForm	p("random");
 	Bureaucrat		bob("bob", 2);
@@ -68,7 +68,7 @@ int main()
 
         p.beSigned(bab);
         p.execute(bab);
-        std::cout << std::endl << std::endl;
+        std::cout << std::endl << std::endl; */
 
 
 	return (0);

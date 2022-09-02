@@ -12,51 +12,57 @@
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(void): Form("PresidentialPardonForm", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(void): 
+Form("PresidentialPardonForm", 25, 5)
 {
-	std::cout << "PresidentialPardonForm default constructor" << std::endl;
-	this->target = "PresidentialPardonForm";
+        std::cout << "Default constructor called (PresidentialPardonForm)" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string s): Form("PresidentialPardonForm", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(std::string s): 
+Form(s, 25, 5)
 {
-        std::cout << "PresidentialPardonForm parameter constrcutor" << std::endl;
-	this->target = s;
+        std::cout << "Parameter constrcutor called (PresidentialPardonForm)" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &source): Form("PresidentialPardonForm", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &source): 
+Form(source.getName(), 25, 5)
 {
-        std::cout << "PresidentialPardonForm copy constructor" << std::endl;
-	this->target = source.getTarget();
+        std::cout << "Copy constructor called (PresidentialPardonForm)" << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm(void)
 {
-        std::cout << "PresidentialPardonForm default destructor" << std::endl;
+        std::cout << "Destructor called (PresidentialPardonForm)" << std::endl;
 }
 
 PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPardonForm &)
 {
+        std::cout << "Assignment operator called (PresidentialPardonForm)" << std::endl;
 	return (*this);
 }
 
 void	PresidentialPardonForm::pardon(void) const
 {
-	std::cout << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	std::cout << this->getName() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
 
 void    PresidentialPardonForm::execute(Bureaucrat const &executer) const
 {
-        if (Form::verifyExecution(executer))
+        try
         {
+                this->verifyExecution(executer);
                 this->pardon();
-        	std::cout << executer.getName() << " executed " << this->getTarget() << std::endl;
-	}
+                std::cout << executer.getName() << " executed " << this->getName() << std::endl;
+        } catch (const std::exception &e)
+        {
+                std::cout << executer.getName() << " couldn't executed " << this->getName() << " because :"
+                << e.what() << std::endl;
+        }
 }
 
 std::ostream    &operator<<(std::ostream &out, const PresidentialPardonForm &obj)
 {
-        out << obj.getTarget() << ", sgrade: " << obj.getSGrade() << ", xgrade: " << obj.getXGrade() << std::endl;
+        out << obj.getName() << ", sgrade: " << obj.getSGrade() << ", xgrade: " << obj.getXGrade() << std::endl;
         return (out);
 }
 

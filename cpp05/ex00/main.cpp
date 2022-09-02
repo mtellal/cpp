@@ -34,23 +34,111 @@ int main()
 {
 
 	Bureaucrat	bob("bob");
-	Bureaucrat	bib(bob);
-
-	std::cout << std::endl << bob << std::endl;
-	std::cout << "increment by 150" << std::endl;
-	incrementGrade(&bob, 150);
-	std::cout << bob << std::endl;
-	std::cout << "increment once again: Should throw an error -> ";
-	bob.incrementGrade();	
-
-	std::cout << std::endl << "decrement by 151" << std::endl;
-	decrementGrade(&bob, 151);
-	std::cout << bob << std::endl;
-	std::cout << "decrement once again: Should throw an error -> ";
-	bob.decrementGrade();
-
-	std::cout << std::endl << bib << std::endl << std::endl;
 	
+	{
+		Bureaucrat	bib(bob);
+		Bureaucrat	bab;
 
+		bab = bob;
+
+		std::cout << bob << std::endl;
+		std::cout << bib << std::endl;
+		std::cout << bab << std::endl;
+	}
+
+	{
+		std::cout << std::endl;
+
+		Bureaucrat bib("bib", 150);
+
+		std::cout << std::endl;
+
+		try
+		{
+			Bureaucrat bab("bab", 151);
+		} catch (const std::exception &e)
+		{
+			std::cout << "Error in creating bab: " << e.what() << std::endl;
+		}
+
+		std::cout << std::endl;
+
+		Bureaucrat bub("bub", 1);
+
+		std::cout << std::endl;
+
+		try
+		{
+			Bureaucrat beb("beb", 0);
+		} catch (const std::exception &e)
+		{
+			std::cout << "Error in creating beb: " << e.what() << std::endl;
+		}
+
+		std::cout << std::endl;
+
+		try
+		{
+			Bureaucrat beb("beb", 0);
+		} catch (const std::exception &e)
+		{
+			std::cout << "Error in creating beb: " << e.what() << std::endl;
+		}
+	}
+
+	std::cout << std::endl << "////////////	in/decrementing tests /////////////" << std::endl;
+
+	std::cout << std::endl << bob << std::endl << std::endl;
+
+	std::cout << "increment by 149" << std::endl;
+
+	try
+	{
+		incrementGrade(&bob, 149);
+	} catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	std::cout << bob << std::endl;
+	
+	std::cout << std::endl << "increment once again: Should throw an error -> " << std::endl;
+
+	try
+	{
+		incrementGrade(&bob, 2);
+	} catch (const std::exception &e)
+	{
+		std::cout << "Error in incrementingGrade(bob): " << e.what() << std::endl;
+	}	
+
+	std::cout << std::endl << bob << std::endl << std::endl;
+
+	std::cout << std::endl << "decrement by 149" << std::endl;
+
+	try
+	{
+		decrementGrade(&bob, 149);
+	} catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	std::cout << bob << std::endl;
+
+	std::cout << std::endl << "decrement once again: Should throw an error -> " << std::endl;
+
+	try
+	{
+		decrementGrade(&bob, 2);
+	} catch (const std::exception &e)
+	{
+		std::cout << "Error in decrementingGrade(bob): " << e.what() << std::endl;
+	}
+
+	std::cout << std::endl << bob << std::endl << std::endl;
+
+	std::cout << std::endl;
+	
 	return (0);
 }

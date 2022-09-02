@@ -12,7 +12,7 @@
 
 GCC = c++
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 NAME = exception
 

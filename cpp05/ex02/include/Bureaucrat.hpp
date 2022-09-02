@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 14:29:21 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/09 15:12:04 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/07 15:50:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,47 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
 
-class	Form;
+class Form;
 
 class	Bureaucrat
 {
-	std::string	name;
-	int		grade;
-
-	class	GradeTooHighException : public std::exception
-	{
-		public:
-			const char *what() const throw()
-			{
-				return ("Grade toot high (Bureaucrat)");
-			}
-	};
-
-	class	GradeTooLowException : public std::exception
-	{
-		public:
-			const char *what() const throw()
-			{
-				return ("Garde too low (Bureaucrat)");
-			}
-	};
-
 	public:
 
 	Bureaucrat(void);
 	Bureaucrat(std::string);
-	Bureaucrat(std::string, int);
+	Bureaucrat(std::string, unsigned int);
 	Bureaucrat(const Bureaucrat &);
 	~Bureaucrat(void);
 
 	Bureaucrat	&operator=(const Bureaucrat &);
 
-	std::string	getName(void) const;
-	int		getGrade(void) const;
+	std::string		getName(void) const;
+	unsigned int	getGrade(void) const;
 
 	void		incrementGrade(void);
 	void		decrementGrade(void);
 
-	void		signForm(Form &);
-	void		executeForm(Form &);
+	void		signForm(Form &) const;
+
+
+	private:
+
+		const std::string	name;
+		unsigned int		grade;
+
+		class	GradeTooHighException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class	GradeTooLowException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
 };
 
 std::ostream	&operator<<(std::ostream &, const Bureaucrat &);

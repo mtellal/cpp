@@ -13,18 +13,18 @@
 #include "Form.hpp"
 
 Form::Form(void): 
-name("Form"), isSigned(false), sGrade(0), xGrade(0)
+name("Form"), isSigned(false), sGrade(1), xGrade(1)
 {
 	std::cout << "Default constructor called (Form)" << std::endl;
 }
 
 Form::Form(std::string s): 
-name(s), isSigned(false), sGrade(0), xGrade(0)
+name(s), isSigned(false), sGrade(1), xGrade(1)
 {
 	std::cout << "Parameter constrcutor called (Form)" << std::endl;
 }
 
-Form::Form(std::string s, const int sg, const int xg): 
+Form::Form(std::string s, unsigned int sg, unsigned int xg): 
 name(s), isSigned(false), sGrade(sg), xGrade(xg)
 {
 	std::cout << "Parameter constructor called (Form)" << std::endl;
@@ -57,12 +57,12 @@ bool	Form::getSigned(void) const
 	return (this->isSigned);
 }
 
-int	Form::getSGrade(void) const
+unsigned int	Form::getSGrade(void) const
 {
 	return (this->sGrade);
 }
 
-int	Form::getXGrade(void) const
+unsigned int	Form::getXGrade(void) const
 {
 	return (this->xGrade);
 }
@@ -73,6 +73,14 @@ void	Form::beSigned(const Bureaucrat &b)
 		throw Form::GradeTooLowException();
 	else if (!this->isSigned)
 		this->isSigned = true;
+}
+
+void	Form::verifyExecution(Bureaucrat const &b) const
+{
+	if (!this->isSigned)
+		throw Form::UnsignedForm();
+	if (this->sGrade < b.getGrade() || this->xGrade < b.getGrade())
+		throw Form::GradeTooLowException();
 }
 
 std::ostream	&operator<<(std::ostream &out, const Form &obj)
@@ -91,3 +99,9 @@ const char	*Form::GradeTooLowException::what() const throw()
 {
 	return ("Grade to low (Form)");
 }
+
+const char	*Form::UnsignedForm::what() const throw()
+{
+	return ("Form unsigned");
+}
+

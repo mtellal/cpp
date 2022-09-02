@@ -12,31 +12,32 @@
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void): Form("ShrubberyCreationForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(void): 
+Form("ShrubberyCreationForm", 145, 137)
 {
-	std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
-	this->target = "ShrubberyCreationForm";
+	std::cout << "Default constructor called (ShrubberyCreationForm)" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string s): Form("ShrubberyCreationForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string s): 
+Form(s, 145, 137)
 {
-        std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
-	this->target = s;
+    std::cout << "Parameter constructor called (ShrubberyCreationForm)" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &source): Form("ShrubberyCreationForm", 145, 137) 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &source): 
+Form(source.getName(), 145, 137) 
 {
-        std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
-	this->target = source.getTarget();
+    std::cout << "Copy constructor called (ShrubberyCreationForm)" << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
-        std::cout << "ShrubberyCreationForm destructor called" << std::endl;
+        std::cout << "Destructor called (ShrubberyCreationForm)" << std::endl;
 }
 
 ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &)
 {
+	std::cout << "Assignment operator called (ShrubberyCreationForm)" << std::endl;
 	return (*this);
 }
 
@@ -47,7 +48,7 @@ void	ShrubberyCreationForm::drawShrubbery(void) const
 	std::ofstream	outfile;
 
 	infile.open("shrubberyTree.txt");
-	outfile.open(this->target + "_shrubbery");
+	outfile.open((this->getName() + "_shrubbery").c_str());
 	while (getline(infile, line))
 		outfile << line;
 	outfile << std::endl << std::endl;
@@ -55,22 +56,22 @@ void	ShrubberyCreationForm::drawShrubbery(void) const
 	outfile.close();
 }
 
-std::string	ShrubberyCreationForm::getTarget(void) const
-{
-	return (this->target);
-}
-
 void	ShrubberyCreationForm::execute(const Bureaucrat &executer) const
 {
-	if (Form::verifyExecution(executer))
+	try
 	{
+		this->verifyExecution(executer);
 		this->drawShrubbery();
-		std::cout << executer.getName() << " executed " << this->getTarget() << std::endl;
+		std::cout << executer.getName() << " executed " << this->getName() << std::endl;
+	} catch (const std::exception &e)
+	{
+		std::cout << executer.getName() << " couldn't executed " << this->getName() << " because :"
+		<< e.what() << std::endl;
 	}
 }
 
 std::ostream	&operator<<(std::ostream &out, const ShrubberyCreationForm &obj)
 {
-	out << obj.getTarget() << ", sgrade: " << obj.getSGrade() << ", xgrade: " << obj.getXGrade() << std::endl;
+	out << obj.getName() << ", sgrade: " << obj.getSGrade() << ", xgrade: " << obj.getXGrade() << std::endl;
 	return (out);
 }

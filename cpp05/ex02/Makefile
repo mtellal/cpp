@@ -12,12 +12,12 @@
 
 GCC = c++
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 NAME = exception
 
-SRC = main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
-      PresidentialPardonForm.cpp
+SRC = main.cpp $(addprefix src/, Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
+      PresidentialPardonForm.cpp)
 
 OBJ = $(SRC:.cpp=.o)
 

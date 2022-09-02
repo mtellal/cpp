@@ -18,7 +18,6 @@
 
 class	ShrubberyCreationForm: public Form
 {
-		void		drawShrubbery(void) const;
 
 	public:
 	
@@ -28,8 +27,12 @@ class	ShrubberyCreationForm: public Form
 		~ShrubberyCreationForm(void);
 		ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &);
 
-		std::string	getTarget(void) const;
-		void    execute(Bureaucrat const & executer) const;
+		void    	execute(Bureaucrat const &) const;
+
+
+	private:
+
+		void	drawShrubbery(void) const;
 };
 
 std::ostream	&operator<<(std::ostream &, const ShrubberyCreationForm &);
