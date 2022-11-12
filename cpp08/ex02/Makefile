@@ -3,32 +3,32 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
+#    By: mtellal <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/19 09:53:45 by mtellal           #+#    #+#              #
-#    Updated: 2022/08/19 11:15:48 by mtellal          ###   ########.fr        #
+#    Created: 2022/09/14 15:18:49 by mtellal           #+#    #+#              #
+#    Updated: 2022/09/14 15:27:55 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GCC = c++
+CC = clang++
 
-CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
+FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-NAME = Array
+NAME = mutantstack
 
-SRC = main.cpp 
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEADER = Array.hpp
+HEADER = MutantStack.hpp
 
 all: $(NAME)
 
-$(OBJ): $(SRC) $(HEADER)
-	$(GCC) $(CFLAGS) -c $(SRC)
+$(OBJ): $(SRC)
+	$(CC) $(FLAGS) -c $(SRC)
 
-$(NAME): $(OBJ)
-	$(GCC) $(CFLAGS) -o $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(HEADER)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
@@ -36,4 +36,4 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all 
+re: fclean all

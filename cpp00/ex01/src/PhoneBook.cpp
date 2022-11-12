@@ -72,7 +72,7 @@ void    PhoneBook::selectContact()
         std::cout << "tapez l'index du contact choisit: ";
         std::getline(std::cin, inp);
         index = ft_index(inp);
-        if (index < 0 || index > this->nbContacts || (index != this->nbContacts - 1 && index > 0))
+        if (index < 0 || index > this->nbContacts)
                 std::cout << "index invalide " << std::endl << "Veuillez reessayer" << std::endl;
         else
         {

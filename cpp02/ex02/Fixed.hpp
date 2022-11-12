@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:40:06 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/03 11:06:26 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/28 18:07:42 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 class	Fixed
 {
-
-	int			value;
-	static int const	fbits;
 
 	public:
 	
@@ -54,11 +51,16 @@ class	Fixed
 		float	toFloat(void) const;
 		int	toInt(void) const;
 
-		static Fixed	&min(Fixed &, Fixed &);
+		static Fixed		&min(Fixed &, Fixed &);
 		static Fixed const	&min(const Fixed &, const Fixed &);	
-		static Fixed	&max(Fixed &, Fixed &);
+		static Fixed		&max(Fixed &, Fixed &);
 		static Fixed const	&max(const Fixed &, const Fixed &);
 
+
+	private:
+
+		int			rawBits;
+		static const int	ffract = 8;
 };
 
 std::ostream     &operator<<(std::ostream &out, Fixed const &obj);

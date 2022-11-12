@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:26:34 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/03 11:09:25 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/28 18:11:40 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ int main()
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl << std::endl;
 
+	std::cout << std::endl << "///////////	Comparison operators	//////////////" << std::endl << std::endl;
+
 	std::cout << " !!! < operator !!! " << std::endl;
-	std::cout << a << " < " << b << " = " << (a < d) << std::endl;
+	std::cout << a << " < " << b << " = " << (a < b) << std::endl;
 	std::cout << b << " < " << c << " = " << (b < c) << std::endl;
 	std::cout << c << " < " << d << " = " << (c < d) << std::endl << std::endl;
 
@@ -55,16 +57,30 @@ int main()
 	
 	Fixed	e(5);
 	Fixed	f(5.5f);
+	Fixed	equal(5.5f);
 	std::cout << " !!! >= operator !!! " << std::endl;
-	std::cout << f << " >= " << e << " = " << (f >= e) << std::endl;
+	std::cout << f << " >= " << equal << " = " << (f >= equal) << std::endl;
 	std::cout << a << " >= " << e << " = " << (a >= e) << std::endl;
 	std::cout << b << " >= " << d << " = " << (b >= d) << std::endl << std::endl;
 	
+	std::cout << " !!! <= operator !!! " << std::endl;
+        std::cout << f << " <= " << equal << " = " << (f <= equal) << std::endl;
+        std::cout << a << " <= " << e << " = " << (a <= e) << std::endl;
+        std::cout << b << " <= " << d << " = " << (b <= d) << std::endl << std::endl;
+
 	std::cout << " !!! == operator !!! " << std::endl;
-        std::cout << f << " == " << e << " = " << (f == e) << std::endl;
+        std::cout << f << " == " << equal << " = " << (f == equal) << std::endl;
         std::cout << e << " == " << e << " = " << (e == e) << std::endl;
         std::cout << b << " == " << d << " = " << (b == d) << std::endl << std::endl;
 
+	std::cout << " !!! != operator !!! " << std::endl;
+        std::cout << f << " != " << equal << " = " << (f != equal) << std::endl;
+        std::cout << a << " != " << e << " = " << (a != e) << std::endl;
+        std::cout << b << " != " << d << " = " << (b != d) << std::endl << std::endl;
+	
+	
+	std::cout << std::endl << "///////////  Arithmetic operators   //////////////" << std::endl << std::endl;	
+	
 	std::cout << " !!! + operator !!! " << std::endl;
         std::cout << f << " + " << e << " = " << (f + e) << std::endl;
         std::cout << a << " + " << e << " = " << (a + e) << std::endl << std::endl;
@@ -74,8 +90,14 @@ int main()
         std::cout << a << " - " << e << " = " << (a - e) << std::endl << std::endl;
 
 	std::cout << " !!! * operator !!! " << std::endl;
-        std::cout << f << " * " << e << " = " << f.toFloat() * e.toFloat() << std::endl;
-        std::cout << a << " * " << e << " = " << (a * e) << std::endl;
+        std::cout << f << " * " << e << " = " << (f * e) << std::endl;
+        std::cout << a << " * " << e << " = " << (a * e) << std::endl << std::endl;
+
+	std::cout << " !!! / operator !!! " << std::endl;
+        std::cout << f << " / " << e << " = " << (f / e) << std::endl;
+        std::cout << a << " / " << e << " = " << (a / e) << std::endl;
+
+	std::cout << std::endl << "///////////  in/decrement operators   //////////////" << std::endl << std::endl;
 
 	std::cout << " !!! ++ operator !!! " << std::endl;
 	Fixed	g;
@@ -97,6 +119,21 @@ int main()
         std::cout << "g = " << g << " g-- = " << g-- << std::endl;
         std::cout << "g = " << g << " g-- = " << g-- << std::endl;
         std::cout << "a = " << a << " a-- = " << a-- << std::endl << std::endl;
+
+	Fixed const	mini(5);
+	Fixed const	maxi(6);
+	Fixed 		minf(5.2f);
+	Fixed		maxf(5.3f);
+
+	std::cout << " !!! min  !!! " << std::endl;
+        std::cout << "min(" << mini << ", " << maxi << ") = " << Fixed::min(mini, maxi) << std::endl;
+        std::cout << "min(" << minf << ", " << maxf << ") = " << Fixed::min(minf, maxf) << std::endl << std::endl;
+
+	std::cout << " !!! max  !!! " << std::endl;
+        std::cout << "max(" << mini << ", " << maxi << ") = " << Fixed::max(mini, maxi) << std::endl;
+        std::cout << "max(" << minf << ", " << maxf << ") = " << Fixed::max(minf, maxf) << std::endl << std::endl;
+
+
 
 	return (0);
 }

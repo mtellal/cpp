@@ -24,9 +24,9 @@ class	Form
 		
 		Form(void);
 		Form(std::string);
-		Form(std::string, unsigned int, unsigned int);
+		Form(std::string, const unsigned int, const unsigned int);
 		Form(const Form &);
-		~Form(void);
+		virtual ~Form(void);
 		Form	&operator=(const Form &);
 
 		const std::string	getName(void) const;

@@ -48,16 +48,8 @@ void	PresidentialPardonForm::pardon(void) const
 
 void    PresidentialPardonForm::execute(Bureaucrat const &executer) const
 {
-        try
-        {
-                this->verifyExecution(executer);
-                this->pardon();
-                std::cout << executer.getName() << " executed " << this->getName() << std::endl;
-        } catch (const std::exception &e)
-        {
-                std::cout << executer.getName() << " couldn't executed " << this->getName() << " because :"
-                << e.what() << std::endl;
-        }
+        this->verifyExecution(executer);
+        this->pardon();
 }
 
 std::ostream    &operator<<(std::ostream &out, const PresidentialPardonForm &obj)

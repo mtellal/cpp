@@ -18,14 +18,21 @@
 class   Data
 {
         public:
-                int     i;
 
-                Data(int x);
                 Data(void);
-                Data(const Data &o);
+                Data(int);
+                Data(const Data &);
                 ~Data(void);
+
                 Data    &operator=(const Data &);
 		bool    operator>(const Data &o);
+
+                int     getAttribute(void) const;
+        
+        
+        private:
+                
+                int     i;
 };
 
 std::ostream    &operator<<(std::ostream &, const Data &);

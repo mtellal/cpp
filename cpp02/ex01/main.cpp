@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:19:36 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/02 13:24:56 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/28 17:09:27 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main()
 	std::cout << "b = " << b << std::endl;
 	std::cout << "c = " << c << std::endl;
 	std::cout << "d = " << d << std::endl;
-	
+
 	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;

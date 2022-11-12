@@ -13,25 +13,28 @@
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 
+#include <algorithm>
 #include <iostream>
 
-#include <array>
-#include <vector>
+class NotFound : public std::exception
+{
+	public:
+		const char *what(void) const throw()
+		{
+			return ("Not found");
+		}
+};
 
 template <class T>
-int	easyFind(T c, int i)
+typename T::iterator	easyFind(T c, int i)
 {
-	size_t	l;
-	size_t	j = 0;
+	typename T::iterator	it;
 
-	l = c.size();
-	while (j < l)
-	{
-		if (c.at(j) == i)
-			return j;
-		j++;
-	}
-	return (-1);
+	it = std::find(c.begin(), c.end(), i);
+	if (it != c.end())
+		return (it);
+	else
+		throw NotFound();
 }
 
 #endif

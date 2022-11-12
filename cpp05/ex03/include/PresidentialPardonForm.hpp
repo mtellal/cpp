@@ -17,18 +17,22 @@
 
 class	PresidentialPardonForm : public Form
 {
-	
+
 	public:
 
-	PresidentialPardonForm(void);
-	PresidentialPardonForm(std::string);
-	PresidentialPardonForm(const PresidentialPardonForm &);
-	~PresidentialPardonForm(void);
-	
-	PresidentialPardonForm	&operator=(const PresidentialPardonForm &);
+		PresidentialPardonForm(void);
+		PresidentialPardonForm(std::string);
+		PresidentialPardonForm(const PresidentialPardonForm &);
+		~PresidentialPardonForm(void);
+		
+		PresidentialPardonForm	&operator=(const PresidentialPardonForm &);
 
-	void	pardon(void) const;
-	void    execute(Bureaucrat const & executer) const;
+		void    execute(Bureaucrat const & executer) const;
+
+
+	private:
+
+		void	pardon(void) const;
 
 };
 

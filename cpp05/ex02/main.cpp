@@ -14,61 +14,128 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
+void    incrementGrade(Bureaucrat &b, int i)
+{
+        try
+        {
+                while (i > 0)
+                {
+                        b.incrementGrade();
+                        i--;
+                }
+        } catch (const std::exception &e)
+        {
+                std::cout << b.getName() << " couldn't incrementGrade because: " << e.what() << std::endl;
+        }
+}
+
+void    decrementGrade(Bureaucrat &b, int i)
+{
+        try
+        {
+                while (i > 0)
+                {
+                        b.decrementGrade();
+                        i--;
+                }
+        } catch (const std::exception &e)
+        {
+                std::cout << b.getName() << " couldn't decrementGrade because: " << e.what() << std::endl;
+        }
+}
+
 int main()
 {
 
-	/* ShrubberyCreationForm	f("shrubbery");
-	RobotomyRequestForm	r("robot");
-	PresidentialPardonForm	p("random");
-	Bureaucrat		bob("bob", 2);
-	Bureaucrat		bib("bib", 45);
-	Bureaucrat		bab("bab", 145);
+        Bureaucrat bob("bob", 1);
 
-	std::cout << std::endl << f << std::endl << r << std::endl << p << std::endl;
+        {
+                Bureaucrat bob2(bob);
+                Bureaucrat bob3;
+        
+                std::cout << bob << std::endl;
+                std::cout << bob2 << std::endl;
 
-	std::cout << "/////// " << bob << " ////////" << std::endl;
-	f.beSigned(bob);
-	f.execute(bob);
-	std::cout << std::endl;
+                bob.decrementGrade();
 
-	r.beSigned(bob);
-        r.execute(bob);
-        r.execute(bob);
-	std::cout << std::endl;
+                bob3 = bob;
+                Bureaucrat bob3bis(bob);
 
-	p.beSigned(bob);
-        p.execute(bob);
-        std::cout << std::endl << std::endl;
+                std::cout << bob3 << std::endl;
+                std::cout << bob3bis << std::endl;
 
-	std::cout << "//////// " <<  bib << " /////////" <<  std::endl;
+                bob.incrementGrade();
+        }
 
-	f.beSigned(bib);
-        f.execute(bib);
+        std::cout << std::endl << "//////////////       FORMS TESTS     /////////////////" << std::endl;
+
+        std::cout << std::endl << bob << std::endl;
+
+        ShrubberyCreationForm   shrub("shrubbery");
+        RobotomyRequestForm     robot("robot");
+        PresidentialPardonForm  president("president");
+
         std::cout << std::endl;
 
-        r.beSigned(bib);
-        r.execute(bib);
-        r.execute(bib);
+        std::cout << shrub << std::endl;
+        std::cout << robot << std::endl;
+        std::cout << president << std::endl;
+
         std::cout << std::endl;
 
-        p.beSigned(bib);
-        p.execute(bib);
-        std::cout << std::endl << std::endl;
-	
-	std::cout << " ////////" << bab << " /////////" << std::endl;
+        std::cout << " /// tests with low grade bureaucrat ////" << std::endl;
+        
+        {
+                Bureaucrat      bab("bab", 150);
+                
+                std::cout << std::endl;
 
-	f.beSigned(bab);
-        f.execute(bab);
+                bab.signForm(shrub);
+                bab.signForm(robot);
+                bab.signForm(president);
+                
+                std::cout << std::endl;
+
+                bab.executeForm(shrub);
+                bab.executeForm(robot);
+                bab.executeForm(president);
+
+                std::cout << std::endl << "/// increment bureaucrat ////" << std::endl;
+
+                incrementGrade(bab, 78);
+
+                std::cout << bab << std::endl;
+
+                std::cout << std::endl << "/// sign and execute ////" << std::endl;
+
+                std::cout << std::endl;
+
+                bab.signForm(shrub);
+                bab.signForm(robot);
+                bab.signForm(president);
+                
+                std::cout << std::endl;
+
+                bab.executeForm(shrub);
+                bab.executeForm(robot);
+                bab.executeForm(president);
+        }
+
+        std::cout << std::endl << "/// sign and execute all forms ///" << std::endl;
+
+        std::cout << bob << std::endl;
+
+        bob.signForm(shrub);
+        bob.signForm(robot);
+        bob.signForm(president);
+        
         std::cout << std::endl;
 
-        r.beSigned(bab);
-        r.execute(bab);
-        r.execute(bab);
+        bob.executeForm(shrub);
+        bob.executeForm(robot);
+        bob.executeForm(president);
+        
         std::cout << std::endl;
-
-        p.beSigned(bab);
-        p.execute(bab);
-        std::cout << std::endl << std::endl; */
 
 
 	return (0);

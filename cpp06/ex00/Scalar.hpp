@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:12:26 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/17 12:43:00 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/09/08 09:17:18 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,44 @@
 #include <iomanip>
 #include <limits.h>
 #include <float.h>
+#include <cstdlib>
 
 class	Scalar
 {
 
-	std::string	exception;
-	double		value;
-
-	void	display(double var);
-
-	double	extractChar(char *);
-	double	extractInt(char *);
-	double	extractFloat(char *);
-	double	extractDouble(char *);
-
-	void	printChar(double);
-	void	printInt(double);
-	void	printFloat(double);
-	void	printDouble(double);
-	void	printException(void);
-
-	bool	isChar(char *);
-	bool	isInt(char *);
-	bool	isFloat(char *);
-	bool	isDouble(char *);
-	bool	isException(char *);
-
 	public:
 
-	Scalar(void);
-	Scalar(std::string);
-	Scalar(const Scalar &);
-	~Scalar(void);
-	Scalar	&operator=(const Scalar &);
+		Scalar(void);
+		Scalar(std::string);
+		Scalar(const Scalar &);
+		~Scalar(void);
+		Scalar	&operator=(const Scalar &);
 
-	void	handleConversion(char *);
+		void	handleConversion(std::string);
+
+
+	private:
+
+		std::string exception;
+
+		bool	isChar(std::string);
+		bool	isInt(std::string);
+		bool	isFloat(std::string);
+		bool	isDouble(std::string);
+		bool	isException(std::string);
+
+		double	extractChar(std::string);
+		double	extractInt(std::string);
+		double	extractFloat(std::string);
+		double	extractDouble(std::string);
+
+		void	printChar(double);
+		void	printInt(double);
+		void	printFloat(double);
+		void	printDouble(double);
+		void	printException(void);
+
+		void	display(double var);
 
 };
 

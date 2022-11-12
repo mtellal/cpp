@@ -10,22 +10,76 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <vector>
+#include <list>
+#include <deque>
+
 #include "EasyFind.hpp"
 
-void	displayFind(int index, int i)
+template<class T>
+void	initSequenceContainer(T &obj, int l)
 {
-	if (index > -1)
-		std::cout << i << " was found at position " << index << std::endl;
-	else
-		std::cout << i << " was not found" << std::endl;
+	int	i = 0;
+
+	while (i < l)
+		obj.push_back(i++);
+}
+
+template<class T>
+void	tryToFind(T &obj, int i)
+{
+
+	try
+	{
+		std::cout << *easyFind(obj, i) << ": found !!" << std::endl;
+	} catch (const std::exception &e)
+	{
+		std::cout << i << ": " << e.what() << std::endl;
+	}
 }
 
 int main()
 {
-	std::array<int, 5> a = {0, 1, 2, 3, 4};
-	std::vector<int> v = {4, 3, 2, 1, 0};
+	int					i = 0;
 
-	displayFind(easyFind(a, 2), 2);
-	displayFind(easyFind(v, 0), 0);
+	std::list<int>		l;
+	std::vector<int>	v; 
+	std::deque<int>		d;
+
+	initSequenceContainer(l, 5);
+	initSequenceContainer(v, 5);
+	initSequenceContainer(d, 5);
+
+	std::cout << "/////	TRY TO FIND ON LIST	/////////" << std::endl;
+
+	while (i < 10)
+	{
+		tryToFind(l, i);
+		i++;
+	}
+
+	i = 0;
+
+	std::cout << std::endl << "/////	TRY TO FIND ON VECTOR	/////////" << std::endl;
+	
+	while (i < 10)
+	{
+		tryToFind(v, i);
+		i++;
+	}
+
+	i = 0;
+
+	std::cout << std::endl << "/////	TRY TO FIND ON DEQUE	/////////" << std::endl;
+	
+	while (i < 10)
+	{
+		tryToFind(d, i);
+		i++;
+	}
+	
+	i = 0;
+
+	
 	return (0);
 }

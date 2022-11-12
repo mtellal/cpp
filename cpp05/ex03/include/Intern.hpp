@@ -3,31 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mtellal <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 16:14:53 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/09 16:32:41 by mtellal          ###   ########.fr       */
+/*   Created: 2022/09/03 15:24:35 by mtellal           #+#    #+#             */
+/*   Updated: 2022/09/03 15:25:46 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INTERN_HPP
 #define INTERN_HPP
 
+#include <iostream>
+
+#include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-class	Intern
+class Intern
 {
 	public:
 
-	Intern(void);
-	Intern(const Intern &);
-	~Intern(void);
+		Intern(void);
+		Intern(const Intern &s);
+		Intern	&operator=(const Intern &s);
+		~Intern(void);
 
-	Intern	&operator=(const Intern &);
+		Form	*makeForm(std::string, std::string);
 
-	Form	*makeForm(std::string, std::string);
+	private:
+	
+		Form	*newShrubberyCreation(std::string);
+		Form	*newRobotomyRequest(std::string);
+		Form	*newPresidentialPardon(std::string);
+
 };
 
-#endif
+#endif 

@@ -6,34 +6,32 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:21:40 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/02 13:21:52 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/28 17:23:13 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed(void) : rawBits(0)
 {
-	value = 0;
 	std::cout << "Default constuctor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed const &n)
+Fixed::Fixed(Fixed const &source) : rawBits(source.getRawBits())
 {
-	value = n.value;
 	std::cout << "Copy constructor called" << std::endl;
 }
 
-Fixed::Fixed(int const n)
+Fixed::Fixed(int const i)
 {
 	std::cout << "Interger const constructor called" << std::endl;
-	value = n << Fixed::fbits;
+	rawBits = i << ffract;
 }
 
-Fixed::Fixed(const float n)
+Fixed::Fixed(const float f)
 {
 	std::cout << "FLoat const constructor called" << std::endl;
-	value = (int)(round(n * (1 << Fixed::fbits)));
+	rawBits = (int)(roundf(f * (1 << ffract)));
 }
 
 Fixed::~Fixed(void)
@@ -41,11 +39,11 @@ Fixed::~Fixed(void)
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed	&Fixed::operator=(Fixed const &n)
+Fixed	&Fixed::operator=(Fixed const &source)
 {
 	std::cout << "Copy assignment called" << std::endl;
-	if (this != &n)
-		value = n.value;
+	if (this != &source)
+		rawBits = source.getRawBits();
 	return (*this);
 }
 
@@ -57,22 +55,22 @@ std::ostream	&operator<<(std::ostream &out, Fixed const &a)
 
 int	Fixed::getRawBits(void) const
 {
-	return (value);
+	return (this->rawBits);
 }
 
 void	Fixed::setRawBits(int const n)
 {
-	value = n;
+	this->rawBits = n;
 }
 
 float	Fixed::toFloat(void) const
 {
-	return ((float)this->value / (float)(1 << Fixed::fbits));
+	return ((float)this->rawBits / (float)(1 << this->ffract));
 }
 
 int	Fixed::toInt(void) const
 {
-	if (this->value < 0)
-		return -1 * ((int)(-this->value >> Fixed::fbits));
-	return ((int)(this->value >> Fixed::fbits));
+	if (this->rawBits < 0)
+		return -1 * ((int)(-this->rawBits >> this->ffract));
+	return ((int)(this->rawBits >> this->ffract));
 }

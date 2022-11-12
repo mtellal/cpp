@@ -12,7 +12,7 @@
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(void) : ClapTrap(), FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap()
 {
     std::cout << "Constructor called (DiamondTrap)" << std::endl;
     this->name = "DiamondTrap";
@@ -22,7 +22,7 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), FragTrap(), ScavTrap()
     this->attackDamage = ::FragTrap::attackDamage;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &source) : ClapTrap(),  FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap(const DiamondTrap &source) : ClapTrap(),  ScavTrap(), FragTrap()
 {
     std::cout << "Copy constructor called (DiamondTrap)" << std::endl;
     this->name = source.name;
@@ -32,7 +32,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &source) : ClapTrap(),  FragTrap(), S
     this->attackDamage = source.FragTrap::attackDamage;
 }
 
-DiamondTrap::DiamondTrap(std::string s) : ClapTrap(), FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap(std::string s) : ClapTrap(), ScavTrap(), FragTrap()
 {
     std::cout << "Parameter constructor called (DiamondTrap)" << std::endl;
     this->name = s;

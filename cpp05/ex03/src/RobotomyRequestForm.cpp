@@ -12,50 +12,53 @@
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(void): Form("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(void): 
+Form("RobotomyRequestForm", 72, 45)
 {
-	std::cout << "RobotomyRequestForm default constructor called" << std::endl;
-	this->target = "RobotomyRequestForm";
+	std::cout << "Default constructor called (RobotomyRequestForm)" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string s): Form("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string s): 
+Form(s, 72, 45)
 {
-        std::cout << "RobotomyRequestForm default constructor called" << std::endl;
-	this->target = s;
+    std::cout << "Default constructor called (RobotomyRequestForm)" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &source): Form("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &s): 
+Form(s.getName(), 72, 45)
 {
-        std::cout << "RobotomyRequestForm parameter constructor called" << std::endl;
-	this->target = source.getTarget();
+    std::cout << "Parameter constructor called (RobotomyRequestForm)" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
-	std::cout << "RobotomyRequestForm destructor called" << std::endl;
+	std::cout << "Destructor called (RobotomyRequestForm)" << std::endl;
+}
+
+RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &)
+{
+	std::cout << "Assignment operator called (RobotomyRequestForm)" << std::endl;
+	return (*this);
 }
 
 void	RobotomyRequestForm::drill(void) const
 {
 	std::cout << "Brrrrrrrr ... ";
 	if (rand() % 2)
-		std::cout << "Succes !!! " << this->target << " has been correctly robotised, with 50% of success !" << std::endl; 
+		std::cout << "Succes !!! " << this->getName() << " has been correctly robotised, with 50% of success !" << std::endl; 
 	else
-		std::cout <<  "Failure !!! " << this->target << " hasn't been robotised, with 50% of failure !" << std::endl;
+		std::cout <<  "Failure !!! " << this->getName() << " hasn't been robotised, with 50% of failure !" << std::endl;
 }
 
 void	RobotomyRequestForm::execute(Bureaucrat const &executer) const
 {
-	if (Form::verifyExecution(executer))
-        {
-                this->drill();
-		std::cout << executer.getName() << " executed " << this->getTarget() << std::endl;
-	}
+	this->verifyExecution(executer);
+	this->drill();
 }
 
 std::ostream    &operator<<(std::ostream &out, const RobotomyRequestForm &obj)
 {
-        out << obj.getTarget() << ", sgrade: " << obj.getSGrade() << ", xgrade: " << obj.getXGrade() << std::endl;
+        out << obj.getName() << ", sgrade: " << obj.getSGrade() << ", xgrade: " << obj.getXGrade() << std::endl;
         return (out);
 }
 

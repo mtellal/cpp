@@ -6,42 +6,38 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:42:38 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/03 10:59:46 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/28 18:07:48 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-int const Fixed::fbits = 8;
-
-Fixed::Fixed(void)
+Fixed::Fixed(void) : rawBits(0)
 {
-	value = 0;
 }
 
 Fixed::Fixed(const int i)
 {
-	value = i << fbits;
+	rawBits = i << ffract;
 }
 
 Fixed::Fixed(const float i)
 {
-	value = (float)round(i * (1 << fbits));
+	rawBits = (float)roundf(i * (1 << ffract));
 }
 
-Fixed::Fixed(const Fixed &source)
+Fixed::Fixed(const Fixed &source) : rawBits(source.getRawBits())
 {
-	value = source.value;
 }
 
-Fixed::~Fixed(void) {}
+Fixed::~Fixed(void) 
+{
+}
 
 Fixed	&Fixed::operator=(const Fixed &source)
 {
 	if (this != &source)
-	{
-		value = source.value;
-	}
+		rawBits = source.getRawBits();
 	return (*this);
 }
 
@@ -91,7 +87,7 @@ Fixed   Fixed::operator-(const Fixed &operand)
 
 Fixed   Fixed::operator*(const Fixed &operand)
 {
-	return (this->toFloat() * operand.toFloat());
+	return (float)(this->toFloat() * operand.toFloat());
 }
 
 Fixed   Fixed::operator/(const Fixed &operand)
@@ -103,27 +99,27 @@ Fixed   Fixed::operator/(const Fixed &operand)
 
 Fixed	&Fixed::operator++(void)
 {
-	this->value++;
+	this->rawBits++;
 	return (*this);
 }
 
 Fixed	&Fixed::operator--(void)
 {
-	this->value--;
+	this->rawBits--;
 	return (*this);
 }
 
 Fixed	Fixed::operator++(int)
 {
 	Fixed	sub(*this);
-	this->value++;
+	this->rawBits++;
 	return (sub);
 }
 
 Fixed	Fixed::operator--(int)
 {
 	Fixed	sub(*this);
-	this->value++;
+	this->rawBits++;
 	return (sub);
 }
 
@@ -137,25 +133,27 @@ std::ostream	&operator<<(std::ostream &out, Fixed const &obj)
 
 int	Fixed::getRawBits(void) const
 {
-	return (this->value);
+	return (this->rawBits);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	this->value = raw;
+	this->rawBits = raw;
 }
 
 float	Fixed::toFloat(void) const
 {
-	return ((float)this->value / (float)(1 << this->fbits));
+	return ((float)this->rawBits / (float)(1 << this->ffract));
 }
 
 int	Fixed::toInt(void) const
 {
-	if (this->value < 0)
-		return (int)(-1 * (-this->value >> this->fbits));
-	return (int)(this->value >> this->fbits);
+	if (this->rawBits < 0)
+		return (int)(-1 * (-this->rawBits >> this->ffract));
+	return (int)(this->rawBits >> this->ffract);
 }
+
+//////		MIN/MAX		///////
 
 Fixed	&Fixed::min(Fixed &a, Fixed &b)
 {
@@ -184,5 +182,3 @@ Fixed const	&Fixed::max(const Fixed &a, const Fixed &b)
 		return (b);
 	return (a);
 }
-
-

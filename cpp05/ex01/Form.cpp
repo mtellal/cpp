@@ -13,21 +13,25 @@
 #include "Form.hpp"
 
 Form::Form(void): 
-name("Form"), isSigned(false), sGrade(0), xGrade(0)
+name("Form"), isSigned(false), sGrade(1), xGrade(1)
 {
 	std::cout << "Default constructor called (Form)" << std::endl;
 }
 
 Form::Form(std::string s): 
-name(s), isSigned(false), sGrade(0), xGrade(0)
+name(s), isSigned(false), sGrade(1), xGrade(1)
 {
 	std::cout << "Parameter constrcutor called (Form)" << std::endl;
 }
 
-Form::Form(std::string s, const int sg, const int xg): 
+Form::Form(std::string s, const unsigned int sg, const unsigned int xg): 
 name(s), isSigned(false), sGrade(sg), xGrade(xg)
 {
 	std::cout << "Parameter constructor called (Form)" << std::endl;
+	if (sg < 1 || xg < 1)
+		throw Form::GradeTooHighException();
+	else if (sg > 150 || xg > 150)
+		throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form &s): 
@@ -57,12 +61,12 @@ bool	Form::getSigned(void) const
 	return (this->isSigned);
 }
 
-int	Form::getSGrade(void) const
+unsigned int	Form::getSGrade(void) const
 {
 	return (this->sGrade);
 }
 
-int	Form::getXGrade(void) const
+unsigned int	Form::getXGrade(void) const
 {
 	return (this->xGrade);
 }

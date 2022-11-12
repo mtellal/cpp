@@ -77,6 +77,33 @@ int main()
 		std::cout << c << std::endl;
 		c = a2;
 		std::cout << c << std::endl;
+
+		try
+		{
+			Form	f("apl", 0, 1);
+			std::cout << f << std::endl;
+		} catch (const std::exception &e)
+		{
+			std::cout << "Error in creating apl because: " << e.what() << std::endl << std::endl;
+		}
+		
+		try
+		{
+			Form	f("apl", 1, 151);
+			std::cout << f << std::endl;
+		} catch (const std::exception &e)
+		{
+			std::cout << "Error in creating apl because: " << e.what() << std::endl << std::endl;
+		}
+
+		try
+		{
+			Form	f("apl", 1, 150);
+			std::cout << f << std::endl;
+		} catch (const std::exception &e)
+		{
+			std::cout << "Error in creating apl because: " << e.what() << std::endl << std::endl;
+		}
 	}
 
 	std::cout << std::endl << std::endl << std::endl;

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:35:40 by mtellal           #+#    #+#             */
-/*   Updated: 2022/08/09 16:45:11 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:31:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,63 +15,55 @@
 
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class	Form
 {
-	const std::string	name;
-	bool			isSigned;
-	const int		sGrade;
-	const int		xGrade;
-
-	protected:
-
-	class	GradeTooHighException : public std::exception
-	{
-		public:
-			const char *what() const throw()
-			{
-				return ("Grade to high");
-			}
-	};
-
-	class	GradeTooLowException : public std::exception
-	{
-		public:
-			const char *what() const throw()
-			{
-				return ("Grade too low");
-			}
-	};
-
-	class	GradeUnsignedException : public std::exception
-	{
-		public:
-			const char *what() const throw()
-			{
-				return ("form not signed");
-			}
-	};
-
-	std::string		target;
 
 	public:
+		
 		Form(void);
 		Form(std::string);
-		Form(std::string, const int, const int);
+		Form(std::string, const unsigned int, const unsigned int);
 		Form(const Form &);
-		~Form(void);
+		virtual ~Form(void);
 		Form	&operator=(const Form &);
 
 		const std::string	getName(void) const;
-		bool			getSigned(void) const;
-		int			getSGrade(void) const;
-		int			getXGrade(void) const;
-		std::string		getTarget(void) const;
+		bool				getSigned(void) const;
+		unsigned int		getSGrade(void) const;
+		unsigned int		getXGrade(void) const;
 
-		void	beSigned(const Bureaucrat &b);
-		virtual void	execute(Bureaucrat const & executer) const = 0;
+		void				beSigned(const Bureaucrat &b);
 
-		void	verifyGrade(Bureaucrat const &) const;
-		bool	verifyExecution(Bureaucrat const &) const;
+		virtual void		execute(Bureaucrat const &) const = 0;
+		void				verifyExecution(Bureaucrat const &) const;
+
+	private:
+
+		const std::string		name;
+		bool					isSigned;
+		const unsigned int		sGrade;
+		const unsigned int		xGrade;
+
+		class	GradeTooHighException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class	GradeTooLowException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class	UnsignedForm : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
 };
 
 std::ostream	&operator<<(std::ostream &, const Form &);

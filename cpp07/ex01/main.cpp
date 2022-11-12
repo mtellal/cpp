@@ -12,81 +12,86 @@
 
 #include "iter.hpp"
 
-void	setTabc(char &c)
-{
-	c = '0';
-}
-
-void	setTabi(int &i)
-{
-	i = -1;
-}
-
-void	setTabf(float &f)
-{
-	f = -1.0f;
-}
-
-void	setTabd(double &d)
-{
-	d = -1.0;
-}
-
-void	setTabs(std::string &s)
-{
-	s = "chaine";
-}
-
 int main()
 {
 	int		l = 5;
-	char		*tabc = new char[l];
-	int		*tabi = new int[l];
-	float		*tabf = new float[l];
-	double		*tabd = new double[l];
-	std::string	*tabs = new std::string[l];
 
 	std::cout << std::fixed << std::setprecision(1) << std::endl;
 
-	std::cout << "	TESTS CHAR" << std::endl;
-	std::cout << "tabc before iter()" << std::endl; 
-	displayTab(tabc, l);
-	iter(tabc, l, setTabc);
-	std::cout << "tabc after iter()" << std::endl; 
-	displayTab(tabc, l);	
-	std::cout << std::endl;
+        {
+                char    *tabc = new char[l];
 
-	std::cout << "  TESTS INT" << std::endl;
-        std::cout << "tabi before iter()" << std::endl;
-        displayTab(tabi, l);
-        iter(tabi, l, setTabi);
-        std::cout << "tabi after iter()" << std::endl;
-        displayTab(tabi, l);
-        std::cout << std::endl;
-	
-	std::cout << "  TESTS FLOAT" << std::endl;
-        std::cout << "tabf before iter()" << std::endl;
-        displayTab(tabf, l);
-        iter(tabf, l, setTabf);
-        std::cout << "tabf after iter()" << std::endl;
-        displayTab(tabf, l);
-        std::cout << std::endl;
+                std::cout << "	TESTS CHAR" << std::endl;
+                std::cout << "tabc before iter()" << std::endl;
+                setTab(tabc, l, 'c'); 
+                displayTab(tabc, l);
+                
+                iter(tabc, l, print<char>);
 
-	std::cout << "  TESTS DOUBLE" << std::endl;
-        std::cout << "tabd before iter()" << std::endl;
-        displayTab(tabd, l);
-        iter(tabd, l, setTabd);
-        std::cout << "tabd after iter()" << std::endl;
-        displayTab(tabd, l);
-        std::cout << std::endl;
+                std::cout << std::endl;
 
-	std::cout << "  TESTS STRING" << std::endl;
-        std::cout << "tabs before iter()" << std::endl;
-        displayTab(tabs, l);
-        iter(tabs, l, setTabs);
-        std::cout << "tabs after iter()" << std::endl;
-        displayTab(tabs, l);
-        std::cout << std::endl;
+                delete [] tabc;
+        }
+
+        {
+                int    *tabi = new int[l];
+
+                std::cout << "  TESTS INT" << std::endl;
+                std::cout << "tabi before iter()" << std::endl;
+                setTab(tabi, l, -1); 
+                displayTab(tabi, l);
+
+                iter(tabi, l, print<int>);
+
+                std::cout << std::endl;
+
+                delete [] tabi;
+        }
+
+        {
+                float   *tabf = new float[l];
+
+                std::cout << "  TESTS FLOAT" << std::endl;
+                std::cout << "tabf before iter()" << std::endl;
+                setTab(tabf, l, -1.2f); 
+                displayTab(tabf, l);
+
+                iter(tabf, l, print<float>);
+
+                std::cout << std::endl;
+
+                delete [] tabf;
+        }
+
+        {
+                double  *tabd = new double[l];
+                
+                std::cout << "  TESTS DOUBLE" << std::endl;
+                std::cout << "tabd before iter()" << std::endl;
+                setTab(tabd, l, -2.5); 
+                displayTab(tabd, l);
+
+                iter(tabd, l, print<double>);
+
+                std::cout << std::endl;
+
+                delete [] tabd;
+        }
+
+        {
+                std::string     *tabs = new std::string[l];
+                
+                std::cout << "  TESTS STRING" << std::endl;
+                std::cout << "tabs before iter()" << std::endl;
+                setTab(tabs, l, std::string("uneChaine")); 
+                displayTab(tabs, l);
+
+                iter(tabs, l, print<std::string>);
+
+                std::cout << std::endl;
+
+                delete [] tabs;
+        }
 
 
 	return (0);

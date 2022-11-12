@@ -20,13 +20,13 @@ class	RobotomyRequestForm : public Form
 {
 	public:
 
-	RobotomyRequestForm(void);
-	RobotomyRequestForm(std::string);
-	RobotomyRequestForm(const RobotomyRequestForm &);
-	~RobotomyRequestForm(void);
-	RobotomyRequestForm	&operator=(const RobotomyRequestForm &);
+		RobotomyRequestForm(void);
+		RobotomyRequestForm(std::string);
+		RobotomyRequestForm(const RobotomyRequestForm &);
+		~RobotomyRequestForm(void);
+		RobotomyRequestForm	&operator=(const RobotomyRequestForm &);
 
-	void    execute(Bureaucrat const & executer) const;
+		void    execute(Bureaucrat const & executer) const;
 
 	private:
 

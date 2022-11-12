@@ -52,16 +52,8 @@ void	RobotomyRequestForm::drill(void) const
 
 void	RobotomyRequestForm::execute(Bureaucrat const &executer) const
 {
-	try
-	{
-		this->verifyExecution(executer);
-		this->drill();
-		std::cout << executer.getName() << " executed " << this->getName() << std::endl;
-	} catch (const std::exception &e)
-	{
-		std::cout << executer.getName() << " couldn't executed " << this->getName() << " because :"
-		<< e.what() << std::endl;
-	}
+	this->verifyExecution(executer);
+	this->drill();
 }
 
 std::ostream    &operator<<(std::ostream &out, const RobotomyRequestForm &obj)

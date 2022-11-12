@@ -51,7 +51,7 @@ int main()
 
 		Bureaucrat bib("bib", 150);
 
-		std::cout << std::endl;
+		std::cout << bib << std::endl;
 
 		try
 		{
@@ -65,7 +65,7 @@ int main()
 
 		Bureaucrat bub("bub", 1);
 
-		std::cout << std::endl;
+		std::cout << bub << std::endl;
 
 		try
 		{

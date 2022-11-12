@@ -12,7 +12,7 @@
 
 GCC = c++
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 NAME = iter
 
@@ -20,9 +20,11 @@ SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
+HEADER = iter.hpp
+
 all: $(NAME)
 
-$(OBJ): $(SRC)
+$(OBJ): $(SRC) $(HEADER)
 	$(GCC) $(CFLAGS) -c $(SRC)
 
 $(NAME): $(OBJ)

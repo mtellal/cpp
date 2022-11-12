@@ -3,37 +3,37 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
+#    By: mtellal <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/19 09:53:45 by mtellal           #+#    #+#              #
-#    Updated: 2022/08/19 11:15:48 by mtellal          ###   ########.fr        #
+#    Created: 2022/09/13 15:26:33 by mtellal           #+#    #+#              #
+#    Updated: 2022/09/13 15:29:17 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GCC = c++
+CC = clang++
 
-CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
+FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-NAME = Array
+NAME = span
 
-SRC = main.cpp 
+SRC = main.cpp Span.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEADER = Array.hpp
+HEADER = Span.hpp
 
 all: $(NAME)
 
-$(OBJ): $(SRC) $(HEADER)
-	$(GCC) $(CFLAGS) -c $(SRC)
+$(OBJ): $(SRC)
+	$(CC) $(FLAGS) -c $(SRC)
 
-$(NAME): $(OBJ)
-	$(GCC) $(CFLAGS) -o $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(HEADER)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
 
-clean:
+clean: 
 	rm -rf $(OBJ)
 
-fclean: clean
+fclean: clean 
 	rm -rf $(NAME)
 
-re: fclean all 
+re: fclean all

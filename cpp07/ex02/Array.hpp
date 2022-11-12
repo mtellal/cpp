@@ -14,67 +14,71 @@
 #define ARRAY_HPP
 
 #include <iostream>
+#include <cmath>
 
 template<class T=int>
 class	Array
 {
-	T	*tab;
-	size_t	length;
-
-	void	copyTab(T *, T *, size_t);
 
 	public:
 
-	class	Segfault : public std::exception
-	{
-		const char *what(void) const throw() 
+		class	Segfault : public std::exception
 		{
-			return ("Segfault: index invalid");
-		}
-	};
+			public:
+				const char *what(void) const throw();
+		};
 
-	Array(void);
-	Array(unsigned int);
-	Array(const Array &);
-	~Array(void);
-	Array<T>	&operator=(const Array<T> &);
-	Array		&operator=(const T &);
-	T		&operator[](size_t i);
+		Array(void);
+		Array(unsigned int);
+		Array(const Array<T> &);
+		~Array(void);
 
-	size_t	size(void) const;
-	T	*getTab(void) const;
-	size_t	getLength(void) const;	
+		Array<T>	&operator=(const Array<T> &);
+		T			&operator[](size_t i);
 
-	void	displayTab(void) const;
+		size_t		size(void) const;
+		T			*getTab(void) const;
+
+		void		displayTab(void) const;
+
+	private:
+
+		T		*tab;
+		size_t	length;
+
+		void	copyTab(T *, size_t);
+		void	initTab(void);
+
 };
 
 /////////////		CANONIC FORM
 
 template <class T>
-Array<T>::Array(void) : length(5)
+Array<T>::Array(void) : length(0)
 {
-        tab = new T[5];
+    tab = NULL;
 }
 
 template <class T>
 Array<T>::Array(unsigned int n) : length(n)
 {
-        tab = new T[n];
+    tab = new T[n];
+	initTab();
 }
 
 template <class T>
 Array<T>::Array(const Array<T> &s)
 {
-	length = s.getLength();
-        tab = new T[s.size()];
-        copyTab(s.getTab(), this->tab, s.size());
+	length = s.size();
+    tab = new T[s.size()];
+    copyTab(s.getTab(), s.size());
 }
 
 template <class T>
 Array<T>::~Array(void)
 {
 	if (this->tab)
-        	delete[] this->tab;
+		delete[] this->tab;
 }
 
 /////////////		OPERAOTRS
@@ -84,41 +88,75 @@ Array<T>	&Array<T>::operator=(const Array<T> &source)
 {
 	if (this != &source)
 	{
-		this->length = source.getLength();
+		this->length = source.size();
+		if (this->tab)
+			delete [] this->tab;
 		this->tab = new T[source.size()];
-		this->copyTab(source.getTab(), this->tab, source.size());
+		this->copyTab(source.getTab(), source.size());
 	}
-	return (*this);
-}
-
-template <class T>
-Array<T>	&Array<T>::operator=(const T &value)
-{
-	*(this->tab) = value; 
 	return (*this);
 }
 
 template <class T>
 T	&Array<T>::operator[](size_t i)
 {
-	if (i >= this->length || i < 0)
+	if (!this->tab || i >= this->length || i < 0)
 		throw Array<T>::Segfault(); 
 	return (this->tab[i]);
 }
 
 /////////////		MEMBERS FUNCTIONS 
 
-template <class T>
-void    Array<T>::copyTab(T *src, T *dst, size_t l)
+template <>
+void    Array<char>::initTab(void)
 {
-        size_t	i;
+	size_t	i;
 
-        i = 0;
-	while (i < l)
-        {
-                dst[i] = src[i];
-                i++;
-        }
+	i = 0;
+	while (this->tab && i < this->length)
+    {
+    	this->tab[i] = '0';
+    	i++;
+    }
+}
+
+template <>
+void    Array<std::string>::initTab(void)
+{
+	size_t	i;
+
+	i = 0;
+	while (this->tab && i < this->length)
+    {
+    	this->tab[i] = "0";
+    	i++;
+    }
+}
+
+template <class T>
+void    Array<T>::initTab(void)
+{
+	size_t	i;
+
+	i = 0;
+	while (this->tab && i < this->length)
+    {
+    	this->tab[i] = 0;
+    	i++;
+    }
+}
+
+template <class T>
+void    Array<T>::copyTab(T *src, size_t l)
+{
+    size_t	i;
+
+    i = 0;
+	while (src && this->tab && i < l)
+    {
+    	this->tab[i] = src[i];
+    	i++;
+    }
 }
 
 template <class T>
@@ -134,23 +172,24 @@ T       *Array<T>::getTab(void) const
 }
 
 template <class T>
-size_t	Array<T>::getLength(void) const
-{
-	return (this->length);
-}
-
-template <class T>
 void	Array<T>::displayTab(void) const
 {
 	unsigned int	i;
 
 	i = 0;
-	while (i < this->length)
+	while (this->tab && i < this->length)
 	{
-		std::cout << " | " << this->tab[i];
+		
+		std::cout << "[" << this->tab[i] << "] ";
 		i++;
 	}
 	std::cout << std::endl;
+}
+
+template <class T>
+const char *Array<T>::Segfault::what(void) const throw() 
+{
+		return ("Segfault: index invalid");
 }
 
 #endif

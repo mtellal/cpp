@@ -47,10 +47,10 @@ void	ShrubberyCreationForm::drawShrubbery(void) const
 	std::string	line;
 	std::ofstream	outfile;
 
-	infile.open("shrubberyTree.txt");
+	infile.open("src/shrubberyTree.txt");
 	outfile.open((this->getName() + "_shrubbery").c_str());
 	while (getline(infile, line))
-		outfile << line;
+		outfile << line << std::endl;
 	outfile << std::endl << std::endl;
 	infile.close();
 	outfile.close();
@@ -58,16 +58,8 @@ void	ShrubberyCreationForm::drawShrubbery(void) const
 
 void	ShrubberyCreationForm::execute(const Bureaucrat &executer) const
 {
-	try
-	{
-		this->verifyExecution(executer);
-		this->drawShrubbery();
-		std::cout << executer.getName() << " executed " << this->getName() << std::endl;
-	} catch (const std::exception &e)
-	{
-		std::cout << executer.getName() << " couldn't executed " << this->getName() << " because :"
-		<< e.what() << std::endl;
-	}
+	this->verifyExecution(executer);
+	this->drawShrubbery();
 }
 
 std::ostream	&operator<<(std::ostream &out, const ShrubberyCreationForm &obj)

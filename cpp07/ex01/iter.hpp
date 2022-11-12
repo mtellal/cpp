@@ -17,19 +17,8 @@
 #include <iomanip>
 #include <string>
 
-struct	chaine
-{
-	std::string	s;
-};
-
-std::ostream	&operator<<(std::ostream &out, const chaine &s)
-{
-	out << s.s;
-	return (out);
-}
-
 template<class T>
-void	iter(T *tab, size_t l, void (*fptr)(T &))
+void	iter(T *tab, size_t l, void (*fptr)(T const &))
 {
 	size_t	i;
 
@@ -42,13 +31,29 @@ void	iter(T *tab, size_t l, void (*fptr)(T &))
 }	
 
 template<class T>
+void	print(T const &element)
+{
+	std::cout << element << std::endl;
+}
+
+template<class T>
+void	setTab(T *tab, size_t l, T value)
+{
+	while (l > 0)
+	{
+		tab[l - 1] = value;
+		l--;
+	}
+}
+
+template<class T>
 void	displayTab(T *tab, size_t l)
 {
 	size_t	i = 0;
 
 	while (i < l)
 	{
-		std::cout << " | " << tab[i];
+		std::cout << "[" << tab[i] << "] ";
 		i++;
 	}
 	std::cout << std::endl;

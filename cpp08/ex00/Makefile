@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-GCC = c++
+GCC = clang++
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 NAME = easyfind
 

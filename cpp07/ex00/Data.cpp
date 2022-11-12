@@ -34,6 +34,11 @@ bool	Data::operator>(const Data &o)
 
 std::ostream	&operator<<(std::ostream &out, const Data &o)
 {
-	out << o.i;
+	out << o.getAttribute();
 	return (out);
+}
+
+int		Data::getAttribute(void) const
+{
+	return (this->i);
 }
